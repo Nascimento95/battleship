@@ -5,15 +5,20 @@ import Grid from './components/Grid';
 class App extends React.Component {
   render() {
     return (
-      <div className="container">
-        <h1>BattleShip Game</h1>
+      <>
+        <h1 className="text-center">BattleShip Game</h1>
         {/* <Score />
         <MainGrid>
           <GridPlayer />
           <GridIA />
         </MainGrid>
         <Message /> */}
-      </div>
+        <div className="d-flex">
+          <Grid />
+          <Grid />
+        </div>
+        
+      </>
     )
   }
 }
