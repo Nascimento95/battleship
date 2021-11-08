@@ -1,0 +1,18 @@
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'n
+
+
+class ButtonShips extends Component {
+    render() {
+        return (
+            <>
+                <div className="btn btn-primary">Destroyer</div>
+                <div className="btn btn-primary">Destroyer</div>
+                <div className="btn btn-primary">Destroyer</div>
+                <div className="btn btn-primary">Destroyer</div>
+            </>
+        );
+    }
+}
+
+export default ButtonShips;
