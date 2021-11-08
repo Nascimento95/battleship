@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Grid from './components/Grid';
 
 class App  extends React.Component {
   render() { 
