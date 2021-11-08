@@ -1,15 +1,21 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-class App  extends React.Component {
-  render() { 
+class App extends React.Component {
+  render() {
     return (
-    <div>
-      <h1>salut</h1>
-    </div>
+      <div className="container">
+        <h1>BattleShip Game</h1>
+        {/* <Score />
+        <MainGrid>
+          <GridPlayer />
+          <GridIA />
+        </MainGrid>
+        <Message /> */}
+      </div>
     )
   }
 }
- 
-export default App ;
+
+export default App;
 
