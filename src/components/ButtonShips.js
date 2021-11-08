@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'n
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 class ButtonShips extends Component {
