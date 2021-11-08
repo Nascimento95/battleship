@@ -5,17 +5,17 @@ class Grid
      constructor(){
          super()
          this.state = {
-            grid:[ 
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            grid:[["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+                [1],
+                [2],
+                [3],
+                [4],
+                [5],
+                [6],
+                [7],
+                [9],
+                [10],
+                []
             
             ]
         }
@@ -28,9 +28,9 @@ class Grid
                 {this.state.grid.map((row,i) => (  
                     <div key={i} className="row">
                         {this.state.grid.map((col,j) => (
-                        <div key={j} className="col-1  border border-1">
+                        <div key={j} className="col-1 py-2  border border-1">
                             <div>
-                                <h6> 1</h6>
+                                <h6>{this.state.grid[i][j]}</h6>
                             </div>
                         </div>
                         ))}
