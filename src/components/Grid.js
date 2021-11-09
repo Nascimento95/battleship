@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 class Grid
  extends React.Component {
      constructor(){
-         super()
-         this.state = {
+        super()
+        this.state = {
             grid:[
                 ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
                 ["1","","","","","","","","","",""],
@@ -18,8 +18,8 @@ class Grid
                 ["10","","","","","","","","","",""],
             ]
         }
-            
-     }
+
+    }    
     render() { 
         return (
             
