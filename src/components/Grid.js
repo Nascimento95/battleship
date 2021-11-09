@@ -28,7 +28,7 @@ class Grid
         // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonné d un bateau corresponde a la coordonné de la case cliquer et qui lui pase un background gris dans classname
         return (
             
-            <div className="container-fluid mt-5 mx-5 ">
+            <div className="container-fluid mt-5 mx-5">
                 {this.state.grid.map((row,i) => (  
                     <div key={i} className="row">
                         {row.map((col,j) => {
