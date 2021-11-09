@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 class ButtonShips extends Component {
+    
     render() {
+        
+        const {text, onClick } = this.props
         return (
             <>
-                <div name="destroyer" className="btn btn-primary">Destroyer</div>
-                <div name="cruiser" className="btn btn-primary">Cruiser</div>
-                <div name="submarine" className="btn btn-primary">Submarine</div>
-                <div name="carrier" className="btn btn-primary">Aircraft Carrier</div>
+                <div shipname={text} onClick={()=>onClick(text)} className="btn btn-primary" >{text}</div>
             </>
         );
     }
