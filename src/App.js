@@ -7,37 +7,46 @@ import ButtonShips from './components/ButtonShips';
 
 
 class App extends React.Component {
-  constructor (){
+  constructor() {
     super()
 
     this.state = {
-        destroyer: 2,
-        cruiser: 3,
-        submarine: 4,
-        carrier: 5
+      selectedboat: "",
+      destroyer: [],
+      cruiser: [],
+      submarine: [],
+      carrier: []
     }
-    
-    this.chooseShip = this.handleChooseShip.bind(this)
-}
 
-handleChooseShip(e) {
-console.log(e)
-}
+    this.handleChooseShip = this.handleChooseShip.bind(this)
+    this.updateBoatPosition = this.updateBoatPosition.bind(this)
+  }
+
+  handleChooseShip(e) {
+    console.log(e)
+    this.setState({ selectedboat: e })
+  }
+
+  updateBoatPosition(i, j){
+    this.setState({destroyer: i, j})
+  
+  }
 
   render() {
+    // console.log(this.state.selectedboat)
+    console.log("This is it " , this.state.destroyer)
     return (
-
       <>
         <h1 className="text-center">BattleShip Game</h1>
 
         <div className="d-flex">
-          <Grid boatposition={this.handleChooseShip}/>
+          <Grid updateBoatPosition={this.updateBoatPosition} />
           <Grid />
         </div>
-        <ButtonShips text="destroyer" onClick={() => this.handleChooseShip(this.state.destroyer)} />
-        <ButtonShips text="cruiser"  onClick={() => this.handleChooseShip(this.state.cruiser)}/>
-        <ButtonShips text="submarine" onClick={() => this.handleChooseShip(this.state.submarine)} />
-        <ButtonShips text="carrier"  onClick={() => this.handleChooseShip(this.state.carrier)}/>
+        <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
+        <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
+        <ButtonShips text="submarine" onClick={this.handleChooseShip} />
+        <ButtonShips text="carrier" onClick={this.handleChooseShip} />
       </>
 
     )
