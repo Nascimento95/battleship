@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Grid from './components/Grid';
-
 import ButtonShips from './components/ButtonShips';
+import ButtonStart from './components/ButtonStart';
 
 
 class App extends React.Component {
@@ -11,8 +11,11 @@ class App extends React.Component {
     return (
 
       <>
+      
         <h1 className="text-center">BattleShip Game</h1>
+        <ButtonStart />
         {/* <Score />
+       
         <MainGrid>
           <GridPlayer />
           <GridIA />
@@ -23,6 +26,7 @@ class App extends React.Component {
           <Grid />
         </div>
         <ButtonShips />
+        
       </>
 
     )
