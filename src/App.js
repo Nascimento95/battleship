@@ -50,10 +50,6 @@ class App extends React.Component {
             <Grid />
           </div>
         </div>
-        <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-        <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-        <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-        <ButtonShips text="carrier" onClick={this.handleChooseShip} />
       </>
 
     )
