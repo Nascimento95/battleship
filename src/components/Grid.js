@@ -23,7 +23,7 @@ class Grid
     render() { 
         return (
             
-            <div className="container-fluid">
+            <div className="container-fluid" >
                 {this.state.grid.map((row,i) => (  
                     <div key={i} className="row">
                         {row.map((col,j) => (

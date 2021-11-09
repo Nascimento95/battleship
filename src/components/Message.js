@@ -7,7 +7,6 @@ class Message extends Component {
         this.state = {
             shotResult: "Hit",
         }
-
     }
 
     render() {
