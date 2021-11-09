@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Grid from './components/Grid';
-
 import ButtonShips from './components/ButtonShips';
+import ButtonStart from './components/ButtonStart';
 
 
 class App extends React.Component {
@@ -65,8 +65,14 @@ class App extends React.Component {
     
     return (
       <>
+      
         <h1 className="text-center">BattleShip Game</h1>
+  
+        <ButtonStart />
+        
+ 
 
+  
         <div className="d-flex">
           <Grid  
           carrier={this.state.carrier}
@@ -80,6 +86,7 @@ class App extends React.Component {
         <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
         <ButtonShips text="submarine" onClick={this.handleChooseShip} />
         <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+ 
       </>
 
     )
