@@ -67,7 +67,12 @@ class App extends React.Component {
       <>
       
         <h1 className="text-center">BattleShip Game</h1>
+  
         <ButtonStart />
+        
+ 
+
+  
         <div className="d-flex">
           <Grid  
           carrier={this.state.carrier}
@@ -81,6 +86,7 @@ class App extends React.Component {
         <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
         <ButtonShips text="submarine" onClick={this.handleChooseShip} />
         <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+ 
       </>
 
     )
