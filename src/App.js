@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Grid from './components/Grid';
 
-import ButtonShips from './components/ButtonShips';
+// import ButtonShips from './components/ButtonShips';
 
 
 class App extends React.Component {
