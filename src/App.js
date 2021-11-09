@@ -8,6 +8,8 @@ import Score from './components/Score';
 import Message from './components/Message';
 import ButtonShips from './components/ButtonShips';
 
+import LogoSite from'./assets/Logo-site.png'
+
 
 class App extends React.Component {
   constructor() {
@@ -68,7 +70,7 @@ class App extends React.Component {
     
     return (
       <>
-        <h1 className="text-center">BattleShip</h1>
+        <img src={LogoSite} alt="Battleship" />
         <div className="row justify-content-between mt-5 pb-5"> 
           <div className="col-5 ms-4">
             <Score typeofPlayer="Player" />
