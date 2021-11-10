@@ -50,28 +50,28 @@ class App extends React.Component {
     let positionSubmarine = ["46"]
     let positionCarrier = ["310"]
     // coordonée de destroyer
-    for (var i = 0; i < 1; i++) {
+    for (let i = 0; i < 1; i++) {
       const split = positionDestroyer[i].split("")
       split[1]++
       const newPosition = split.join("");
       positionDestroyer = [...positionDestroyer, newPosition]
     }
     // coordonée de cruiser
-    for (var i = 0; i < 2; i++) {
+    for (let i = 0; i < 2; i++) {
       const split = positionCruiser[i].split("")
       split[1]++
       const newPosition = split.join("");
       positionCruiser = [...positionCruiser, newPosition]
     }
     // coordonée de submarine
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       const split = positionSubmarine[i].split("")
       split[0]++
       const newPosition = split.join("");
       positionSubmarine = [...positionSubmarine, newPosition]
     }
     // coordonée de carrier
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       const split = positionCarrier[i].split("")
       split[0]++
       const newPosition = split.join("");
@@ -202,28 +202,28 @@ class App extends React.Component {
       let submarineTouch = []
       let carrierTouch = []
     // compare les deux array pour dire que c'est couler
-      for(var i = 0 ; i < this.state.destroyerIa.length ; i++){
+      for(let i = 0 ; i < this.state.destroyerIa.length ; i++){
          let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.destroyerIa[i])
           if(isTouch){
               destroyerTouch= [this.state.destroyerIa[i], ...destroyerTouch]
           }
       } 
       // compare les deux array pour dire que c'est couler
-      for(var i = 0 ; i < this.state.cruiserIa.length ; i++){
+      for(let i = 0 ; i < this.state.cruiserIa.length ; i++){
         let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.cruiserIa[i])
          if(isTouch){
              cruiserTouch= [this.state.cruiserIa[i], ...cruiserTouch]
          }
      } 
 
-     for(var i = 0 ; i < this.state.submarineIa.length ; i++){
+     for(let i = 0 ; i < this.state.submarineIa.length ; i++){
       let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.submarineIa[i])
        if(isTouch){
            submarineTouch= [this.state.submarineIa[i], ...submarineTouch]
        }
     } 
 
-    for(var i = 0 ; i < this.state.carrierIa.length ; i++){
+    for(let i = 0 ; i < this.state.carrierIa.length ; i++){
       let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.carrierIa[i])
       if(isTouch){
           carrierTouch= [this.state.carrierIa[i], ...carrierTouch]
@@ -321,8 +321,8 @@ class App extends React.Component {
                 flopAray={this.state.flopAray}
               />
 
+              </div>
             </div>
-          </div>
 
           <div className="sea"></div>
         </div>

@@ -1,5 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import explosion from'../assets/explosion.png'
+
 class Grid
  extends React.Component {
     constructor(){
@@ -45,8 +48,8 @@ class Grid
                                 <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-2 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
                                     <div>
                                         {!touchBoat && !flopBoat && <h6>{col} </h6>}
-                                        {touchBoat && <h6>X</h6>}
-                                        {flopBoat && <h6>o</h6>}
+                                        {touchBoat && <img src={explosion} alt="ship explosion" className="pr-3" style={{ maxWidth: "150%", height: "auto", verticalAlign: "center" }}/>}
+                                        {flopBoat && <h6>X</h6>}
                                     </div>
                                 </div>
                         )})}
