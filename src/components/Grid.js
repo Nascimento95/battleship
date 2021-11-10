@@ -48,7 +48,7 @@ class Grid
                                 <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-1 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
                                     <div>
                                         {!touchBoat && !flopBoat && <h6>{col} </h6>}
-                                        {touchBoat && <img src={explosion} alt="ship explosion" className="pr-3" style={{ maxWidth: "150%", height: "auto", verticalAlign: "center" }}/>}
+                                        {touchBoat && <img src={explosion} alt="ship explosion" className="pr-2" style={{ maxWidth: "150%", height: "auto" }}/>}
                                         {flopBoat && <h6>X</h6>}
                                     </div>
                                 </div>

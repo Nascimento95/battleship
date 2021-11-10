@@ -6,10 +6,19 @@ class ButtonShips extends Component {
     
     render() {
         
-        const {text, onClick } = this.props
+        const {text, image, onClick } = this.props
         return (
             <>
-                <div shipname={text} onClick={()=>onClick(text)} className="btn btn-primary" >{text}</div>
+                <div
+                shipname={text} 
+                onClick={()=>onClick(text)}
+                >
+                    <img 
+                    src={image} 
+                    alt={text}
+                    className="buttonShip" 
+                    />
+                </div>
             </>
         );
     }
