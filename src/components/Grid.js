@@ -24,8 +24,9 @@ class Grid
     }
 
     render() { 
+       
         // ici les props passer dans grid dans app.js
-        const { updateBoatPosition, destroyer, cruiser, submarine, carrier } = this.props
+        const { updateBoatPosition, destroyer, cruiser, submarine, carrier , touchArray, flopAray } = this.props
         // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonné d un bateau corresponde a la coordonné de la case cliquer et qui lui pase un background gris dans classname
         return (
             
@@ -34,6 +35,8 @@ class Grid
                     <div key={i} className="row">
                         {row.map((col,j) => {
                             // les ternaires pour le backgroud de la case selectionner
+                            const flopBoat = flopAray.includes(`${i}${j}`)
+                            const touchBoat = touchArray.includes(`${i}${j}`) 
                             const carrierClass = carrier.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
@@ -41,7 +44,9 @@ class Grid
                             return(
                                 <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-2 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
                                     <div>
-                                        <h6>{col}</h6>
+                                        {!touchBoat && !flopBoat && <h6>{col} </h6>}
+                                        {touchBoat && <h6>X</h6>}
+                                        {flopBoat && <h6>o</h6>}
                                     </div>
                                 </div>
                         )})}

@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 
 class Message extends Component {
-    constructor() {
-        super()
-
-        this.state = {
-            shotResult: "Hit",
-        }
-    }
-
+    
     render() {
+        const { message } = this.props
         return (
             <div>
-                {this.state.shotResult ==="Hit" && <p>Touch !</p>}
-                {this.state.shotResult ==="None" && <p>Bloup !</p>}
-                {this.state.shotResult ==="Sunk" && <p>Touch and sunk !</p>}
+                <p>{message} </p>
             </div>
         );
     }

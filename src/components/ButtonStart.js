@@ -14,10 +14,12 @@ class ButtonStart  extends React.Component {
     max = 100;
   
     handleClick = () => {
-      this.setState({random: this.min + (Math.random() * (this.max - this.min))});
+      this.setState({random: Math.floor(this.min + (Math.random() * (this.max - this.min))) });
+     this.props.onclick()
     };
   
     render() {
+      const { onclick } = this.props
       return (
         <div className="col-7 d-flex justify-content-end">
             <div className="col-3">
@@ -29,7 +31,7 @@ class ButtonStart  extends React.Component {
         );
       }
     }
-    // vvvvvvvvvv
+    
   
   export default ButtonStart 
 
