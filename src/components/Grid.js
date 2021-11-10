@@ -26,22 +26,23 @@ class Grid
     render() { 
         // ici les props passer dans grid dans app.js
         const { updateBoatPosition, destroyer, cruiser, submarine, carrier } = this.props
-        // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonné d un bateau corresponde a la coordonné de la case cliquer et qui lui pase un background gris dans classname
+        // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonnées d un bateau correspondent à la coordonnée de la case cliquer et qui lui pase un background gris dans classname
         return (
             
             <div className="container-fluid" >
                 {this.state.grid.map((row,i) => (  
-                    <div key={i} className="row">
+                    <div key={i} className="row ">
                         {row.map((col,j) => {
                             // les ternaires pour le backgroud de la case selectionner
                             const carrierClass = carrier.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary`  : ""
+                      
                             return(
-                                <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-2 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
+                                <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-1 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
                                     <div>
-                                        <h6>{col}</h6>
+                                        <h6 >{col}</h6>
                                     </div>
                                 </div>
                         )})}

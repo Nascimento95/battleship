@@ -27,8 +27,8 @@ class Score extends Component {
     render() {
         const { typeofPlayer } = this.props 
         return (
-            <div className="d-flex">
-                {typeofPlayer} : {typeofPlayer === "Player" ? (<p>&nbsp;{this.state.scorePlayer}</p>) : (<p>&nbsp;{this.state.scoreIA}</p>)}
+            <div className="text-center pb-2">
+                <h4>{typeofPlayer} : {{typeofPlayer} === "Player" ? `${this.state.scorePlayer}` : `${this.state.scoreIA}`}</h4>
             </div>
         );
     }
