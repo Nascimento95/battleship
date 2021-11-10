@@ -73,6 +73,7 @@ class App extends React.Component {
       <>
         <img src={LogoSite} alt="Battleship" />
         <ButtonStart />
+          
         <div className="row justify-content-between mt-5 pb-5"> 
           <div className="col-5 ms-4">
             <Score typeofPlayer="Player" />
@@ -92,13 +93,15 @@ class App extends React.Component {
             <GridIA />
           </div>
         </div>
+
         <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
         <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
         <ButtonShips text="submarine" onClick={this.handleChooseShip} />
         <ButtonShips text="carrier" onClick={this.handleChooseShip} />
- 
+
       </>
-  
+
+
     )
   }
 }
