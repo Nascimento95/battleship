@@ -55,21 +55,21 @@ class App extends React.Component {
       positionDestroyer = [...positionDestroyer,newPosition]
     }
     // coordonée de cruiser
-    for(var i =0 ; i < 2 ; i++){
+    for(i =0 ; i < 2 ; i++){
       const split = positionCruiser[i].split("")
       split[1] ++
       const newPosition = split.join("");
       positionCruiser = [...positionCruiser,newPosition]
     }
     // coordonée de submarine
-    for(var i =0 ; i < 3 ; i++){
+    for(i =0 ; i < 3 ; i++){
       const split = positionSubmarine[i].split("")
       split[0] ++
       const newPosition = split.join("");
       positionSubmarine = [...positionSubmarine,newPosition]
     }
     // coordonée de carrier
-    for(var i =0 ; i < 4 ; i++){
+    for(i =0 ; i < 4 ; i++){
       const split = positionCarrier[i].split("")
       split[0] ++
       const newPosition = split.join("");
