@@ -305,10 +305,10 @@ class App extends React.Component {
                 onclick={this.chooseIa}
               />
               <div className="mt-4">
-                <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-                <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-                <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-                <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+                <ButtonShips text="destroyer" image={ButtonShip2} onClick={this.handleChooseShip} />
+                <ButtonShips text="cruiser" image={ButtonShip3}  onClick={this.handleChooseShip} />
+                <ButtonShips text="submarine" image={ButtonShip4} onClick={this.handleChooseShip} />
+                <ButtonShips text="carrier" image={ButtonShip5}  onClick={this.handleChooseShip} />
               </div>
               <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
             </div>
