@@ -229,50 +229,50 @@ class App extends React.Component {
       <>
         <img className="logo-site" src={LogoSite} alt="Battleship" />
         <div className="content"> 
-          <div className="row justify-content-between mt-5 pb-5"> 
-            <div className="col-5 ms-4">
-              <Score typeofPlayer="Player" />
-              <Grid  
-                carrier={this.state.carrier}
-                submarine={this.state.submarine}
-                cruiser={this.state.cruiser} 
-                destroyer={this.state.destroyer} 
-                updateBoatPosition={this.updateBoatPosition}
-                touchArray={[]} 
-                flopAray={[]}
-                
-              />
-            </div>
-            <div className="col-1">
-              <Message 
-              message={this.state.message}
-              />
-              <ButtonStart 
-              onclick={this.chooseIa} 
-              />
-              <div className="mt-4">
-              <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-              <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-              <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-              <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+            <div className="row justify-content-between mt-3 mx-4"> 
+              <div className="col-5 ms-4">
+                <Score typeofPlayer="Player" />
+                <Grid  
+                  carrier={this.state.carrier}
+                  submarine={this.state.submarine}
+                  cruiser={this.state.cruiser} 
+                  destroyer={this.state.destroyer} 
+                  updateBoatPosition={this.updateBoatPosition}
+                  touchArray={[]} 
+                  flopAray={[]}
+                  
+                />
               </div>
-              <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
-            </div>
-            
-            <div className="col-5">
-              <Score typeofPlayer="Computer"/>
-              <Grid 
-              carrier={this.state.carrierIa}
-              submarine={this.state.submarineIa}
-              cruiser={this.state.cruiserIa} 
-              destroyer={this.state.destroyerIa} 
-              updateBoatPosition={this.updateBoatPosition}
-              touchArray={this.state.touchArray}
-              flopAray={this.state.flopAray}
-              />
+              <div className="col-1">
+                <Message 
+                message={this.state.message}
+                />
+                <ButtonStart 
+                onclick={this.chooseIa} 
+                />
+                <div className="mt-4">
+                <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
+                <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
+                <ButtonShips text="submarine" onClick={this.handleChooseShip} />
+                <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+                </div>
+                <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
+              </div>
+              
+              <div className="col-5">
+                <Score typeofPlayer="Computer"/>
+                <Grid 
+                carrier={this.state.carrierIa}
+                submarine={this.state.submarineIa}
+                cruiser={this.state.cruiserIa} 
+                destroyer={this.state.destroyerIa} 
+                updateBoatPosition={this.updateBoatPosition}
+                touchArray={this.state.touchArray}
+                flopAray={this.state.flopAray}
+                />
 
+              </div>
             </div>
-          </div>
 
           <div className="sea"></div>
         </div> 
