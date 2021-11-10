@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css"
 
 import Grid from './components/Grid';
-import GridIA from './components/Grid';
+import GridIA from './components/GridIA';
 import Score from './components/Score';
 import Message from './components/Message';
 import ButtonShips from './components/ButtonShips';
@@ -71,11 +71,12 @@ class App extends React.Component {
     
     return (
       <>
-        <img src={LogoSite} alt="Battleship" />
+        <img src={LogoSite} alt="Battleship"/>
+
         <ButtonStart />
           
-        <div className="row justify-content-between mt-5 pb-5"> 
-          <div className="col-5 ms-4">
+        <div className="d-flex"> 
+          
             <Score typeofPlayer="Player" />
             <Grid  
               carrier={this.state.carrier}
@@ -84,14 +85,12 @@ class App extends React.Component {
               destroyer={this.state.destroyer} 
               updateBoatPosition={this.updateBoatPosition} 
             />
-          </div>
-          <div className="col-1">
+         
             <Message />
-          </div>
-          <div className="col-5">
+         
             <Score typeofPlayer="Computer"/>
             <GridIA />
-          </div>
+       
         </div>
 
         <ButtonShips text="destroyer" onClick={this.handleChooseShip} />

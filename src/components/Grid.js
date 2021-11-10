@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 class Grid
  extends React.Component {
     constructor(){
@@ -18,7 +19,6 @@ class Grid
                 ["9","","","","","","","","","",""],
                 ["10","","","","","","","","","",""],
             ]
-
         } 
             
     }
