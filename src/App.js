@@ -131,8 +131,18 @@ class App extends React.Component {
   }
 
   handleshoot (i,j){
-    // let boatDead =this.state.destroyerIa.includes(this.state.touchArray)
-    // console.log("bateau exploser", boatDead);
+    // let boatDead = this.state.destroyerIa.includes(this.state.touchArray)
+    // let bot = JSON.stringify(this.state.destroyerIa) === JSON.stringify(this.state.touchArray)
+    // console.log("bateau exploser",bot);
+    let stateDestroyerIa = this.state.destroyerIa
+    let stateTouchArray = this.state.touchArray
+    console.log("state destroyeru",stateDestroyerIa ,"state toucharray", stateTouchArray);
+    if(JSON.stringify(stateDestroyerIa) === JSON.stringify(stateTouchArray)){
+      console.log("bateau exploser");
+    }
+
+
+
     let positionShoot = `${i}${j}`
     if(this.state.destroyerIa.includes(positionShoot)){
       
@@ -167,11 +177,11 @@ class App extends React.Component {
     }
 
    
-    console.log("X = ", i, "Y = ", j)
+    // console.log("X = ", i, "Y = ", j)
   }
 
   render() {
-    console.log(this.state.touchArray, this.state.destroyerIa);
+    console.log("state toucharray",this.state.touchArray,"state destroyer", this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.cruiserIa);
     return (
