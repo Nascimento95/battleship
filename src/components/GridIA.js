@@ -28,7 +28,7 @@ class GridIA extends Component {
                 <div key={i} className="row">
                     {row.map((col,j) => {
                         return(
-                            <div key={j} className="col-1 py-2 border border-1">
+                            <div key={j} className="col-1 py-1 border border-1">
                                 <div>
                                     <h6>{col}</h6>
                                 </div>

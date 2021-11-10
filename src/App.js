@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css"
 
 import Grid from './components/Grid';
-import GridIA from './components/GridIA';
 import Score from './components/Score';
 import Message from './components/Message';
 import ButtonShips from './components/ButtonShips';
 import ButtonStart from './components/ButtonStart';
 
 import LogoSite from'./assets/Logo-site.png'
+// import Sea from'./assets/sea.svg'
 
 
 class App extends React.Component {
@@ -176,50 +176,55 @@ class App extends React.Component {
     // console.log("destroyeru iA",this.state.cruiserIa);
     return (
       <>
-        <img src={LogoSite} alt="Battleship" />
-        <ButtonStart onclick={this.chooseIa} />
-          
-        <div className="row justify-content-between mt-5 pb-5"> 
-          <div className="col-5 ms-4">
-            <Score typeofPlayer="Player" />
-            <Grid  
-              carrier={this.state.carrier}
-              submarine={this.state.submarine}
-              cruiser={this.state.cruiser} 
-              destroyer={this.state.destroyer} 
+        <img className="logo-site" src={LogoSite} alt="Battleship" />
+        <div className="content"> 
+          <div className="row justify-content-between mt-5 pb-5"> 
+            <div className="col-5 ms-4">
+              <Score typeofPlayer="Player" />
+              <Grid  
+                carrier={this.state.carrier}
+                submarine={this.state.submarine}
+                cruiser={this.state.cruiser} 
+                destroyer={this.state.destroyer} 
+                updateBoatPosition={this.updateBoatPosition}
+                touchArray={[]} 
+                flopAray={[]}
+                
+              />
+            </div>
+            <div className="col-1">
+              <Message 
+              message={this.state.message}
+              />
+              <ButtonStart 
+              onclick={this.chooseIa} 
+              />
+              <div className="mt-4">
+              <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
+              <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
+              <ButtonShips text="submarine" onClick={this.handleChooseShip} />
+              <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+              </div>
+            </div>
+            
+            <div className="col-5">
+              <Score typeofPlayer="Computer"/>
+              <Grid 
+              carrier={this.state.carrierIa}
+              submarine={this.state.submarineIa}
+              cruiser={this.state.cruiserIa} 
+              destroyer={this.state.destroyerIa} 
               updateBoatPosition={this.updateBoatPosition}
-              touchArray={[]} 
-              flopAray={[]}
-              
-            />
+              touchArray={this.state.touchArray}
+              flopAray={this.state.flopAray}
+              />
+
+            </div>
           </div>
-          <div className="col-1">
-            <Message 
-            message={this.state.message}
-            />
-          </div>
-          <div className="col-5">
-            <Score typeofPlayer="Computer"/>
-            <Grid 
-            carrier={this.state.carrierIa}
-            submarine={this.state.submarineIa}
-            cruiser={this.state.cruiserIa} 
-            destroyer={this.state.destroyerIa} 
-            updateBoatPosition={this.updateBoatPosition}
-            touchArray={this.state.touchArray}
-            flopAray={this.state.flopAray}
-            />
 
-          </div>
-        </div>
-
-        <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-        <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-        <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-        <ButtonShips text="carrier" onClick={this.handleChooseShip} />
-
-      </>
-
+          <div className="sea"></div>
+        </div> 
+    </>
 
     )
   }
