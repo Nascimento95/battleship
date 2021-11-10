@@ -44,27 +44,35 @@ class App extends React.Component {
     const compareCarrier = ["1","1","1","1","1"]
 
     if(selectedboat === "destroyer"){
-      this.setState({destroyer: [`${i}${j}`, ...this.state.destroyer]});
+      this.setState({destroyer: [`${i}${j}`, `${i}${j+1}` , ...this.state.destroyer]});
+      console.log(this.state.destroyer , "- destroyer log")
       if(this.state.destroyer.length >= compareDestroyeur.length){
         this.setState({destroyer: this.state.destroyer});
+        console.log(this.state.cruiser, "- destroyer log2")
       }
     } else if(selectedboat === "cruiser"){
-      this.setState({cruiser: [`${i}${j}`, ...this.state.cruiser]})
+      this.setState({cruiser: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}` , ...this.state.cruiser]})
+      console.log(this.state.cruiser, "- cruiser log")
       if(this.state.cruiser.length >= compareCruiser.length){
         this.setState({cruiser: this.state.cruiser});
+        console.log(this.state.cruiser, "- cruiser log2")
       }
     } else if(selectedboat === "submarine"){
-      this.setState({submarine: [`${i}${j}`, ...this.state.submarine]})
+      this.setState({submarine: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, ...this.state.submarine]})
+      console.log(this.state.submarine, "- submarine log")
       if(this.state.submarine.length >= compareSubmarine.length){
         this.setState({submarine: this.state.submarine});
+        console.log(this.state.submarine, "- submarine log2")
       }
     } else if(selectedboat === "carrier"){
-      this.setState({carrier: [`${i}${j}`, ...this.state.carrier]})
+      this.setState({carrier: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, `${i}${j+4}`, ...this.state.carrier]})
+      console.log(this.state.carrier, "- carrier log")
       if(this.state.carrier.length >= compareCarrier.length){
         this.setState({carrier: this.state.carrier});
-      }
+        console.log(this.state.carrier, "- carrier log2")
+      }   
     }
-  
+    console.log("X = ", i, "Y = ", j)
   }
 
   render() {

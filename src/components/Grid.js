@@ -24,6 +24,7 @@ class Grid
     }
 
     render() { 
+       
         // ici les props passer dans grid dans app.js
         const { updateBoatPosition, destroyer, cruiser, submarine, carrier } = this.props
         // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonné d un bateau corresponde a la coordonné de la case cliquer et qui lui pase un background gris dans classname
