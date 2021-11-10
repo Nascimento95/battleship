@@ -19,7 +19,7 @@ class ButtonStart  extends React.Component {
     };
   
     render() {
-      const { onclick } = this.props
+      // const { onclick } = this.props
       return (
         <div className="col-1 d-flex justify-content-end">
             <div className="col-3">
