@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 class Grid
  extends React.Component {
     constructor(){
@@ -19,6 +18,7 @@ class Grid
                 ["9","","","","","","","","","",""],
                 ["10","","","","","","","","","",""],
             ]
+
         } 
             
     }
@@ -32,7 +32,7 @@ class Grid
             
             <div className="container-fluid" >
                 {this.state.grid.map((row,i) => (  
-                    <div key={i} className="row ">
+                    <div key={i} className="row">
                         {row.map((col,j) => {
                             // les ternaires pour le backgroud de la case selectionner
                             const flopBoat = flopAray.includes(`${i}${j}`)
@@ -41,9 +41,8 @@ class Grid
                             const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary`  : ""
-                      
                             return(
-                                <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-1 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
+                                <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-2 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
                                     <div>
                                         {!touchBoat && !flopBoat && <h6>{col} </h6>}
                                         {touchBoat && <h6>X</h6>}

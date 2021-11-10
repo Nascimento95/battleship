@@ -8,7 +8,7 @@ import Message from './components/Message';
 import ButtonShips from './components/ButtonShips';
 import ButtonStart from './components/ButtonStart';
 
-import LogoSite from'./assets/Logo-site.png'
+import LogoSite from './assets/Logo-site.png'
 // import Sea from'./assets/sea.svg'
 
 
@@ -26,63 +26,65 @@ class App extends React.Component {
       cruiserIa: [],
       submarineIa: [],
       carrierIa: [],
-      touchArray:[],
-      flopAray : [],
-      message :"",
-      turn: "Orizontal"
+      touchArray: [],
+      flopAray: [],
+      message: "",
+      turn: "Orizontal",
+      fleetPlayer: 0,
+      fleetIA: 0,
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
     this.updateBoatPosition = this.updateBoatPosition.bind(this)
     this.chooseIa = this.chooseIa.bind(this)
-    this.handleshoot  = this.handleshoot.bind(this)
+    this.handleshoot = this.handleshoot.bind(this)
     this.displayMessage = this.displayMessage.bind(this)
     this.changePosition = this.changePosition.bind(this)
   }
-  displayMessage(){
+  displayMessage() {
 
   }
-  chooseIa(){
+  chooseIa() {
     let positionDestroyer = ["11"]
     let positionCruiser = ["31"]
     let positionSubmarine = ["46"]
     let positionCarrier = ["310"]
     // coordonée de destroyer
-    for(var i = 0 ; i < 1 ; i++) {
+    for (var i = 0; i < 1; i++) {
       const split = positionDestroyer[i].split("")
-      split[1] ++
+      split[1]++
       const newPosition = split.join("");
-      positionDestroyer = [...positionDestroyer,newPosition]
+      positionDestroyer = [...positionDestroyer, newPosition]
     }
     // coordonée de cruiser
-    for(var i =0 ; i < 2 ; i++){
+    for (var i = 0; i < 2; i++) {
       const split = positionCruiser[i].split("")
-      split[1] ++
+      split[1]++
       const newPosition = split.join("");
-      positionCruiser = [...positionCruiser,newPosition]
+      positionCruiser = [...positionCruiser, newPosition]
     }
     // coordonée de submarine
-    for(var i =0 ; i < 3 ; i++){
+    for (var i = 0; i < 3; i++) {
       const split = positionSubmarine[i].split("")
-      split[0] ++
+      split[0]++
       const newPosition = split.join("");
-      positionSubmarine = [...positionSubmarine,newPosition]
+      positionSubmarine = [...positionSubmarine, newPosition]
     }
     // coordonée de carrier
-    for(var i =0 ; i < 4 ; i++){
+    for (var i = 0; i < 4; i++) {
       const split = positionCarrier[i].split("")
-      split[0] ++
+      split[0]++
       const newPosition = split.join("");
-      positionCarrier = [...positionCarrier,newPosition]
+      positionCarrier = [...positionCarrier, newPosition]
     }
 
     this.setState({
       destroyerIa: positionDestroyer,
       cruiserIa: positionCruiser,
-      submarineIa : positionSubmarine,
-      carrierIa : positionCarrier
+      submarineIa: positionSubmarine,
+      carrierIa: positionCarrier
     })
-     
+
   }
 
   handleChooseShip(e) {
@@ -93,190 +95,238 @@ class App extends React.Component {
   // avec des condition elle nous dit si nous avon selection le bouton destroyeur ,carier etc ...
   // et apres sa nous permet de push dans le tableau correspondant au boutton les valeur des parametre de la function qui sont case cliquer
   // nous avon aussi des condition qui nous permette de ne pas depasser le nombre de case que correspond le bateau choisi
-  updateBoatPosition(i, j){
-    const {selectedboat} =this.state
-    const compareDestroyeur = ["1","1"]
-    const compareCruiser = ["1","1","1"]
-    const compareSubmarine = ["1","1","1","1"]
-    const compareCarrier = ["1","1","1","1","1"]
+  updateBoatPosition(i, j) {
+    const { selectedboat } = this.state
+    const compareDestroyeur = ["1", "1"]
+    const compareCruiser = ["1", "1", "1"]
+    const compareSubmarine = ["1", "1", "1", "1"]
+    const compareCarrier = ["1", "1", "1", "1", "1"]
 
-    if(selectedboat === "destroyer" ){
-      this.setState({destroyer: [`${i}${j}`, `${i}${j+1}` , ...this.state.destroyer]});
-      console.log(this.state.destroyer , "- destroyer log")
-      if(this.state.destroyer.length >= compareDestroyeur.length){
-        this.setState({destroyer: this.state.destroyer});
+    if (selectedboat === "destroyer") {
+      this.setState({ destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer] });
+      console.log(this.state.destroyer, "- destroyer log")
+      if (this.state.destroyer.length >= compareDestroyeur.length) {
+        this.setState({ destroyer: this.state.destroyer });
 
       }
-    } else if(selectedboat === "cruiser"){
-      this.setState({cruiser: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}` , ...this.state.cruiser]})
+    } else if (selectedboat === "cruiser") {
+      this.setState({ cruiser: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, ...this.state.cruiser] })
       console.log(this.state.cruiser, "- cruiser log")
-      if(this.state.cruiser.length >= compareCruiser.length){
-        this.setState({cruiser: this.state.cruiser});
+      if (this.state.cruiser.length >= compareCruiser.length) {
+        this.setState({ cruiser: this.state.cruiser });
 
       }
-    } else if(selectedboat === "submarine"){
-      this.setState({submarine: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, ...this.state.submarine]})
+    } else if (selectedboat === "submarine") {
+      this.setState({ submarine: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, ...this.state.submarine] })
       console.log(this.state.submarine, "- submarine log")
-      if(this.state.submarine.length >= compareSubmarine.length){
-        this.setState({submarine: this.state.submarine});
+      if (this.state.submarine.length >= compareSubmarine.length) {
+        this.setState({ submarine: this.state.submarine });
 
       }
-    } else if(selectedboat === "carrier"){
-      this.setState({carrier: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, `${i}${j+4}`, ...this.state.carrier]})
+    } else if (selectedboat === "carrier") {
+      this.setState({ carrier: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, `${i}${j + 4}`, ...this.state.carrier] })
       console.log(this.state.carrier, "- carrier log")
-      if(this.state.carrier.length >= compareCarrier.length){
-        this.setState({carrier: this.state.carrier});
-
-      }   
-    } 
-    
-    if (selectedboat === "destroyer" && this.state.turn === "Vertical"){
-      this.setState({destroyer: [`${i}${j}`, `${i+1}${j}` , ...this.state.destroyer]})
-      console.log(this.state.destroyer , "- destroyer vertical")
-      if(this.state.destroyer.length >= compareDestroyeur.length){
-        this.setState({destroyer: this.state.destroyer});
+      if (this.state.carrier.length >= compareCarrier.length) {
+        this.setState({ carrier: this.state.carrier });
 
       }
-    } else if (selectedboat === "cruiser" && this.state.turn === "Vertical" ) {
-      this.setState({cruiser: [`${i}${j}`, `${i+1}${j}`, `${i+2}${j}` , ...this.state.cruiser]})
-      console.log(this.state.cruiser, "- cruiser vertical")
-      if(this.state.cruiser.length >= compareCruiser.length){
-        this.setState({cruiser: this.state.cruiser});
-
-      }
-    } else if (selectedboat === "submarine" && this.state.turn === "Vertical" ) {
-      this.setState({submarine: [`${i}${j}`, `${i+1}${j}`, `${i+2}${j}`, `${i+3}${j}`, ...this.state.submarine]})
-      console.log(this.state.submarine, "- submarine vertical")
-      if(this.state.submarine.length >= compareSubmarine.length){
-        this.setState({submarine: this.state.submarine});
-      }
-    } else if (selectedboat === "carrier" && this.state.turn === "Vertical" ) {
-      this.setState({carrier: [`${i}${j}`, `${i+1}${j}`, `${i+2}${j}`, `${i+3}${j}`, `${i+4}${j}`, ...this.state.carrier]})
-      console.log(this.state.carrier, "- carrier vertical")
-      if(this.state.carrier.length >= compareCarrier.length){
-        this.setState({carrier: this.state.carrier});
-      }   
     }
 
-    this.handleshoot(i,j)
+    if (selectedboat === "destroyer" && this.state.turn === "Vertical") {
+      this.setState({ destroyer: [`${i}${j}`, `${i + 1}${j}`, ...this.state.destroyer] })
+      console.log(this.state.destroyer, "- destroyer vertical")
+      if (this.state.destroyer.length >= compareDestroyeur.length) {
+        this.setState({ destroyer: this.state.destroyer });
+
+      }
+    } else if (selectedboat === "cruiser" && this.state.turn === "Vertical") {
+      this.setState({ cruiser: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, ...this.state.cruiser] })
+      console.log(this.state.cruiser, "- cruiser vertical")
+      if (this.state.cruiser.length >= compareCruiser.length) {
+        this.setState({ cruiser: this.state.cruiser });
+
+      }
+    } else if (selectedboat === "submarine" && this.state.turn === "Vertical") {
+      this.setState({ submarine: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, `${i + 3}${j}`, ...this.state.submarine] })
+      console.log(this.state.submarine, "- submarine vertical")
+      if (this.state.submarine.length >= compareSubmarine.length) {
+        this.setState({ submarine: this.state.submarine });
+      }
+    } else if (selectedboat === "carrier" && this.state.turn === "Vertical") {
+      this.setState({ carrier: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, `${i + 3}${j}`, `${i + 4}${j}`, ...this.state.carrier] })
+      console.log(this.state.carrier, "- carrier vertical")
+      if (this.state.carrier.length >= compareCarrier.length) {
+        this.setState({ carrier: this.state.carrier });
+      }
+    }
+
   }
 
-  handleshoot (i,j){
-    // let boatDead = this.state.destroyerIa.includes(this.state.touchArray)
-    // let bot = JSON.stringify(this.state.destroyerIa) === JSON.stringify(this.state.touchArray)
-    // console.log("bateau exploser",bot);
-    let stateDestroyerIa = this.state.destroyerIa
-    let stateTouchArray = this.state.touchArray
-    console.log("state destroyeru",stateDestroyerIa ,"state toucharray", stateTouchArray);
-    if(JSON.stringify(stateDestroyerIa) === JSON.stringify(stateTouchArray)){
-      console.log("bateau exploser");
-    }
-
-
+  handleshoot(i, j) {
+    
 
     let positionShoot = `${i}${j}`
-    if(this.state.destroyerIa.includes(positionShoot)){
-      
-      this.setState({
-        touchArray:[positionShoot, ...this.state.touchArray],
-        message : "touché"
-      })
-    }else if (this.state.cruiserIa.includes(positionShoot)){
-      console.log("touché");
-      this.setState({
-        touchArray:[positionShoot, ...this.state.touchArray],
-        message : "touché"
-      })
-    }else if (this.state.submarineIa.includes(positionShoot)){
-      console.log("touché");
-      this.setState({
-        touchArray:[positionShoot, ...this.state.touchArray],
-        message : "touché"
-      })
-    }else if (this.state.carrierIa.includes(positionShoot)){
-      console.log("touché");
-      this.setState({
-        touchArray:[positionShoot, ...this.state.touchArray],
-        message : "touché"
-      })
-    }
-    else{
-      this.setState({
-        flopAray:[positionShoot, ...this.state.flopAray],
-        message : "flop"
-      })
-    }
+    if (this.state.destroyerIa.includes(positionShoot)) {
 
+      this.setState({
+        touchArray: [positionShoot, ...this.state.touchArray],
+        message: "touché"
+      })
+    } else if (this.state.cruiserIa.includes(positionShoot)) {
+      console.log("touché");
+      this.setState({
+        touchArray: [positionShoot, ...this.state.touchArray],
+        message: "touché"
+      })
+    } else if (this.state.submarineIa.includes(positionShoot)) {
+      console.log("touché");
+      this.setState({
+        touchArray: [positionShoot, ...this.state.touchArray],
+        message: "touché"
+      })
+    } else if (this.state.carrierIa.includes(positionShoot)) {
+      console.log("touché");
+      this.setState({
+        touchArray: [positionShoot, ...this.state.touchArray],
+        message: "touché"
+      })
+    }
+    else {
+      this.setState({
+        flopAray: [positionShoot, ...this.state.flopAray],
+        message: "flop"
+      })
+    }
+      let destroyerTouch = []
+      let cruiserTouch = []
+      let submarineTouch = []
+      let carrierTouch = []
+    // compare les deux array pour dire que c'est couler
+      for(var i = 0 ; i < this.state.destroyerIa.length ; i++){
+         let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.destroyerIa[i])
+          if(isTouch){
+              destroyerTouch= [this.state.destroyerIa[i], ...destroyerTouch]
+          }
+      } 
+      // compare les deux array pour dire que c'est couler
+      for(var i = 0 ; i < this.state.cruiserIa.length ; i++){
+        let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.cruiserIa[i])
+         if(isTouch){
+             cruiserTouch= [this.state.cruiserIa[i], ...cruiserTouch]
+         }
+     } 
+
+     for(var i = 0 ; i < this.state.submarineIa.length ; i++){
+      let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.submarineIa[i])
+       if(isTouch){
+           submarineTouch= [this.state.submarineIa[i], ...submarineTouch]
+       }
+    } 
+
+    for(var i = 0 ; i < this.state.carrierIa.length ; i++){
+      let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.carrierIa[i])
+      if(isTouch){
+          carrierTouch= [this.state.carrierIa[i], ...carrierTouch]
+      }
+    }
    
+
+      if(destroyerTouch.length === this.state.destroyerIa.length){
+        this.setState({
+          message: "destroyer coulé",
+          fleetPlayer: this.state.fleetPlayer +1
+      })
+      
+      }
+      if(cruiserTouch.length === this.state.cruiserIa.length){
+        this.setState({
+          message: "cruiser coulé",
+          fleetPlayer: this.state.fleetPlayer +1
+        })
+      }
+      if(submarineTouch.length === this.state.submarineIa.length){
+        this.setState({
+          message: "submarine coulé",
+          fleetPlayer: this.state.fleetPlayer +1
+        })
+      }
+      if(carrierTouch.length === this.state.carrierIa.length){
+        this.setState({
+          message: "carrier coulé",
+          fleetPlayer: this.state.fleetPlayer +1
+        })
+      }
+
     // console.log("X = ", i, "Y = ", j)
   }
 
-  changePosition(){
+  changePosition() {
     console.log("Turn")
-    this.setState({turn: "Vertical"})
+    this.setState({ turn: "Vertical" })
 
-    if ( this.state.turn === "Vertical" ){
-      this.setState({turn: "Orizontal"})
+    if (this.state.turn === "Vertical") {
+      this.setState({ turn: "Orizontal" })
     }
 
   }
 
   render() {
-    console.log("state toucharray",this.state.touchArray,"state destroyer", this.state.destroyerIa);
+    console.log("state toucharray", this.state.touchArray, "state destroyer", this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.cruiserIa);
     return (
       <>
         <img className="logo-site" src={LogoSite} alt="Battleship" />
-        <div className="content"> 
-          <div className="row justify-content-between mt-5 pb-5"> 
+        <div className="content">
+          <div className="row justify-content-between mt-5 pb-5">
             <div className="col-5 ms-4">
-              <Score typeofPlayer="Player" />
-              <Grid  
+              <Score 
+                scorePlayer = {this.state.fleetPlayer}
+                typeofPlayer="Player" />
+              <Grid
                 carrier={this.state.carrier}
                 submarine={this.state.submarine}
-                cruiser={this.state.cruiser} 
-                destroyer={this.state.destroyer} 
+                cruiser={this.state.cruiser}
+                destroyer={this.state.destroyer}
                 updateBoatPosition={this.updateBoatPosition}
-                touchArray={[]} 
+                touchArray={[]}
                 flopAray={[]}
-                
               />
             </div>
             <div className="col-1">
-              <Message 
-              message={this.state.message}
+              <Message
+                message={this.state.message}
               />
-              <ButtonStart 
-              onclick={this.chooseIa} 
+              <ButtonStart
+                onclick={this.chooseIa}
               />
               <div className="mt-4">
-              <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-              <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-              <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-              <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+                <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
+                <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
+                <ButtonShips text="submarine" onClick={this.handleChooseShip} />
+                <ButtonShips text="carrier" onClick={this.handleChooseShip} />
               </div>
               <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
             </div>
-            
+
             <div className="col-5">
-              <Score typeofPlayer="Computer"/>
-              <Grid 
-              carrier={this.state.carrierIa}
-              submarine={this.state.submarineIa}
-              cruiser={this.state.cruiserIa} 
-              destroyer={this.state.destroyerIa} 
-              updateBoatPosition={this.updateBoatPosition}
-              touchArray={this.state.touchArray}
-              flopAray={this.state.flopAray}
+              <Score typeofPlayer="Computer" />
+              <Grid
+                carrier={this.state.carrierIa}
+                submarine={this.state.submarineIa}
+                cruiser={this.state.cruiserIa}
+                destroyer={this.state.destroyerIa}
+                updateBoatPosition={this.handleshoot}
+                touchArray={this.state.touchArray}
+                flopAray={this.state.flopAray}
               />
 
             </div>
           </div>
 
           <div className="sea"></div>
-        </div> 
-    </>
+        </div>
+      </>
 
     )
   }
