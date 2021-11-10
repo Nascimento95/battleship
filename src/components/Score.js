@@ -35,3 +35,9 @@ class Score extends Component {
 }
 
 export default Score;
+
+
+
+
+
+ 
