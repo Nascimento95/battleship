@@ -8,7 +8,11 @@ import Message from './components/Message';
 import ButtonShips from './components/ButtonShips';
 import ButtonStart from './components/ButtonStart';
 
-import LogoSite from './assets/Logo-site.png'
+import LogoSite from'./assets/Logo-site.png';
+import ButtonShip2 from'./assets/Button-ship-2.png';
+import ButtonShip3 from'./assets/Button-ship-3.png';
+import ButtonShip4 from'./assets/Button-ship-4.png';
+import ButtonShip5 from'./assets/Button-ship-5.png';
 // import Sea from'./assets/sea.svg'
 
 
@@ -269,8 +273,8 @@ class App extends React.Component {
     console.log("Turn")
     this.setState({ turn: "Vertical" })
 
-    if (this.state.turn === "Vertical") {
-      this.setState({ turn: "Orizontal" })
+    if ( this.state.turn === "Vertical" ){
+      this.setState({turn: "Horizontal"})
     }
 
   }
@@ -300,7 +304,7 @@ class App extends React.Component {
                 flopAray={[]}
               />
             </div>
-            <div className="col-1">
+            <div className="col-1 d-flex flex-column justify-content-center">
               <Message
                 message={this.state.message}
               />
@@ -308,10 +312,10 @@ class App extends React.Component {
                 onclick={this.chooseIa}
               />
               <div className="mt-4">
-                <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-                <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-                <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-                <ButtonShips text="carrier" onClick={this.handleChooseShip} />
+                <ButtonShips text="destroyer" image={ButtonShip2} onClick={this.handleChooseShip} />
+                <ButtonShips text="cruiser" image={ButtonShip3}  onClick={this.handleChooseShip} />
+                <ButtonShips text="submarine" image={ButtonShip4} onClick={this.handleChooseShip} />
+                <ButtonShips text="carrier" image={ButtonShip5}  onClick={this.handleChooseShip} />
               </div>
               <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
             </div>
