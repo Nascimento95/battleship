@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css"
 
 import Grid from './components/Grid';
-import GridIA from './components/GridIA';
 import Score from './components/Score';
 import Message from './components/Message';
 import ButtonShips from './components/ButtonShips';
@@ -22,11 +21,66 @@ class App extends React.Component {
       destroyer: [],
       cruiser: [],
       submarine: [],
-      carrier: []
+      carrier: [],
+      destroyerIa: [],
+      cruiserIa: [],
+      submarineIa: [],
+      carrierIa: [],
+      touchArray:[],
+      flopAray : [],
+      message :""
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
     this.updateBoatPosition = this.updateBoatPosition.bind(this)
+    this.chooseIa = this.chooseIa.bind(this)
+    this.handleshoot  = this.handleshoot.bind(this)
+    this.displayMessage = this.displayMessage.bind(this)
+  }
+  displayMessage(){
+
+  }
+  chooseIa(){
+    let positionDestroyer = ["11"]
+    let positionCruiser = ["31"]
+    let positionSubmarine = ["46"]
+    let positionCarrier = ["310"]
+    // coordonée de destroyer
+    for(var i = 0 ; i < 1 ; i++) {
+      const split = positionDestroyer[i].split("")
+      split[1] ++
+      const newPosition = split.join("");
+      positionDestroyer = [...positionDestroyer,newPosition]
+    }
+    // coordonée de cruiser
+    for(var i =0 ; i < 2 ; i++){
+      const split = positionCruiser[i].split("")
+      split[1] ++
+      const newPosition = split.join("");
+      positionCruiser = [...positionCruiser,newPosition]
+    }
+    // coordonée de submarine
+    for(var i =0 ; i < 3 ; i++){
+      const split = positionSubmarine[i].split("")
+      split[0] ++
+      const newPosition = split.join("");
+      positionSubmarine = [...positionSubmarine,newPosition]
+    }
+    // coordonée de carrier
+    for(var i =0 ; i < 4 ; i++){
+      const split = positionCarrier[i].split("")
+      split[0] ++
+      const newPosition = split.join("");
+      positionCarrier = [...positionCarrier,newPosition]
+    }
+
+    this.setState({
+      destroyerIa: positionDestroyer,
+      cruiserIa: positionCruiser,
+      submarineIa : positionSubmarine,
+      carrierIa : positionCarrier
+    })
+     
   }
 
   handleChooseShip(e) {
@@ -45,68 +99,132 @@ class App extends React.Component {
     const compareCarrier = ["1","1","1","1","1"]
 
     if(selectedboat === "destroyer"){
-      this.setState({destroyer: [`${i}${j}`, ...this.state.destroyer]});
+      this.setState({destroyer: [`${i}${j}`, `${i}${j+1}` , ...this.state.destroyer]});
+      console.log(this.state.destroyer , "- destroyer log")
       if(this.state.destroyer.length >= compareDestroyeur.length){
         this.setState({destroyer: this.state.destroyer});
+        console.log(this.state.cruiser, "- destroyer log2")
       }
     } else if(selectedboat === "cruiser"){
-      this.setState({cruiser: [`${i}${j}`, ...this.state.cruiser]})
+      this.setState({cruiser: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}` , ...this.state.cruiser]})
+      console.log(this.state.cruiser, "- cruiser log")
       if(this.state.cruiser.length >= compareCruiser.length){
         this.setState({cruiser: this.state.cruiser});
+        console.log(this.state.cruiser, "- cruiser log2")
       }
     } else if(selectedboat === "submarine"){
-      this.setState({submarine: [`${i}${j}`, ...this.state.submarine]})
+      this.setState({submarine: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, ...this.state.submarine]})
+      console.log(this.state.submarine, "- submarine log")
       if(this.state.submarine.length >= compareSubmarine.length){
         this.setState({submarine: this.state.submarine});
+        console.log(this.state.submarine, "- submarine log2")
       }
     } else if(selectedboat === "carrier"){
-      this.setState({carrier: [`${i}${j}`, ...this.state.carrier]})
+      this.setState({carrier: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, `${i}${j+4}`, ...this.state.carrier]})
+      console.log(this.state.carrier, "- carrier log")
       if(this.state.carrier.length >= compareCarrier.length){
         this.setState({carrier: this.state.carrier});
-      }
+        console.log(this.state.carrier, "- carrier log2")
+      }   
     }
-  
+    this.handleshoot(i,j)
+  }
+
+  handleshoot (i,j){
+    // let boatDead =this.state.destroyerIa.includes(this.state.touchArray)
+    // console.log("bateau exploser", boatDead);
+    let positionShoot = `${i}${j}`
+    if(this.state.destroyerIa.includes(positionShoot)){
+      
+      this.setState({
+        touchArray:[positionShoot, ...this.state.touchArray],
+        message : "touché"
+      })
+    }else if (this.state.cruiserIa.includes(positionShoot)){
+      console.log("touché");
+      this.setState({
+        touchArray:[positionShoot, ...this.state.touchArray],
+        message : "touché"
+      })
+    }else if (this.state.submarineIa.includes(positionShoot)){
+      console.log("touché");
+      this.setState({
+        touchArray:[positionShoot, ...this.state.touchArray],
+        message : "touché"
+      })
+    }else if (this.state.carrierIa.includes(positionShoot)){
+      console.log("touché");
+      this.setState({
+        touchArray:[positionShoot, ...this.state.touchArray],
+        message : "touché"
+      })
+    }
+    else{
+      this.setState({
+        flopAray:[positionShoot, ...this.state.flopAray],
+        message : "flop"
+      })
+    }
+
+   
+    console.log("X = ", i, "Y = ", j)
   }
 
   render() {
-    
+    console.log(this.state.touchArray, this.state.destroyerIa);
+    // console.log("destroyeru iA",this.state.destroyerIa);
+    // console.log("destroyeru iA",this.state.cruiserIa);
     return (
       <>
         <img className="logo-site" src={LogoSite} alt="Battleship" />
-        <div className="content">
-        
-            <div className="row justify-content-between mt-3"> 
-              <div className="col-5 ms-3">
-                <Score typeofPlayer="PLAYER" />
-                <Grid  
-                  carrier={this.state.carrier}
-                  submarine={this.state.submarine}
-                  cruiser={this.state.cruiser} 
-                  destroyer={this.state.destroyer} 
-                  updateBoatPosition={this.updateBoatPosition} 
-                />
-              </div>
-              <div className="col-1">
-                <Message />
-                <ButtonStart />
-                <div className="mt-4">
-                  <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
-                  <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
-                  <ButtonShips text="submarine" onClick={this.handleChooseShip} />
-                  <ButtonShips text="carrier" onClick={this.handleChooseShip} />
-                </div>
-              </div>
-              <div className="col-5">
-                <Score typeofPlayer="COMPUTER"/>
-                <GridIA />
+        <div className="content"> 
+          <div className="row justify-content-between mt-5 pb-5"> 
+            <div className="col-5 ms-4">
+              <Score typeofPlayer="Player" />
+              <Grid  
+                carrier={this.state.carrier}
+                submarine={this.state.submarine}
+                cruiser={this.state.cruiser} 
+                destroyer={this.state.destroyer} 
+                updateBoatPosition={this.updateBoatPosition}
+                touchArray={[]} 
+                flopAray={[]}
+                
+              />
+            </div>
+            <div className="col-1">
+              <Message 
+              message={this.state.message}
+              />
+              <ButtonStart 
+              onclick={this.chooseIa} 
+              />
+              <div className="mt-4">
+              <ButtonShips text="destroyer" onClick={this.handleChooseShip} />
+              <ButtonShips text="cruiser" onClick={this.handleChooseShip} />
+              <ButtonShips text="submarine" onClick={this.handleChooseShip} />
+              <ButtonShips text="carrier" onClick={this.handleChooseShip} />
               </div>
             </div>
-          
-          <div className="sea">
-          </div>
-        </div>
-    </>
+            
+            <div className="col-5">
+              <Score typeofPlayer="Computer"/>
+              <Grid 
+              carrier={this.state.carrierIa}
+              submarine={this.state.submarineIa}
+              cruiser={this.state.cruiserIa} 
+              destroyer={this.state.destroyerIa} 
+              updateBoatPosition={this.updateBoatPosition}
+              touchArray={this.state.touchArray}
+              flopAray={this.state.flopAray}
+              />
 
+            </div>
+          </div>
+
+          <div className="sea"></div>
+        </div> 
+    </>
 
     )
   }

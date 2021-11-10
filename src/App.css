@@ -31,7 +31,7 @@ p {
 
 .sea {
     background-image: url("assets/sea.svg");
-    background-position: top 1000px;
+    background-position: top;
     width: 100%;
     height: 50%;
     -webkit-background-size: cover;
