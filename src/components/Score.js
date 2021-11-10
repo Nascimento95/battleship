@@ -25,10 +25,10 @@ class Score extends Component {
 
 
     render() {
-        const { typeofPlayer, scorePlayer } = this.props 
+        const { typeofPlayer, scorePlayer, scoreIa } = this.props 
         return (
             <div className="text-center pb-2">
-                <h4>{typeofPlayer} : {typeofPlayer === "Player" ? `${scorePlayer}` : `${this.state.scoreIA}`}</h4>
+                <h4>{typeofPlayer} : {typeofPlayer === "Player" ? `${scorePlayer}` : `${scoreIa}`}</h4>
             </div>
         );
     }
