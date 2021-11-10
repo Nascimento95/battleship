@@ -28,7 +28,8 @@ class App extends React.Component {
       carrierIa: [],
       touchArray:[],
       flopAray : [],
-      message :""
+      message :"",
+      turn: "Orizontal"
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
@@ -36,6 +37,7 @@ class App extends React.Component {
     this.chooseIa = this.chooseIa.bind(this)
     this.handleshoot  = this.handleshoot.bind(this)
     this.displayMessage = this.displayMessage.bind(this)
+    this.changePosition = this.changePosition.bind(this)
   }
   displayMessage(){
 
@@ -98,35 +100,64 @@ class App extends React.Component {
     const compareSubmarine = ["1","1","1","1"]
     const compareCarrier = ["1","1","1","1","1"]
 
-    if(selectedboat === "destroyer"){
+    if(selectedboat === "destroyer" ){
       this.setState({destroyer: [`${i}${j}`, `${i}${j+1}` , ...this.state.destroyer]});
       console.log(this.state.destroyer , "- destroyer log")
       if(this.state.destroyer.length >= compareDestroyeur.length){
         this.setState({destroyer: this.state.destroyer});
-        console.log(this.state.cruiser, "- destroyer log2")
+
       }
     } else if(selectedboat === "cruiser"){
       this.setState({cruiser: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}` , ...this.state.cruiser]})
       console.log(this.state.cruiser, "- cruiser log")
       if(this.state.cruiser.length >= compareCruiser.length){
         this.setState({cruiser: this.state.cruiser});
-        console.log(this.state.cruiser, "- cruiser log2")
+
       }
     } else if(selectedboat === "submarine"){
       this.setState({submarine: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, ...this.state.submarine]})
       console.log(this.state.submarine, "- submarine log")
       if(this.state.submarine.length >= compareSubmarine.length){
         this.setState({submarine: this.state.submarine});
-        console.log(this.state.submarine, "- submarine log2")
+
       }
     } else if(selectedboat === "carrier"){
       this.setState({carrier: [`${i}${j}`, `${i}${j+1}`, `${i}${j+2}`, `${i}${j+3}`, `${i}${j+4}`, ...this.state.carrier]})
       console.log(this.state.carrier, "- carrier log")
       if(this.state.carrier.length >= compareCarrier.length){
         this.setState({carrier: this.state.carrier});
-        console.log(this.state.carrier, "- carrier log2")
+
+      }   
+    } 
+    
+    if (selectedboat === "destroyer" && this.state.turn === "Vertical"){
+      this.setState({destroyer: [`${i}${j}`, `${i+1}${j}` , ...this.state.destroyer]})
+      console.log(this.state.destroyer , "- destroyer vertical")
+      if(this.state.destroyer.length >= compareDestroyeur.length){
+        this.setState({destroyer: this.state.destroyer});
+
+      }
+    } else if (selectedboat === "cruiser" && this.state.turn === "Vertical" ) {
+      this.setState({cruiser: [`${i}${j}`, `${i+1}${j}`, `${i+2}${j}` , ...this.state.cruiser]})
+      console.log(this.state.cruiser, "- cruiser vertical")
+      if(this.state.cruiser.length >= compareCruiser.length){
+        this.setState({cruiser: this.state.cruiser});
+
+      }
+    } else if (selectedboat === "submarine" && this.state.turn === "Vertical" ) {
+      this.setState({submarine: [`${i}${j}`, `${i+1}${j}`, `${i+2}${j}`, `${i+3}${j}`, ...this.state.submarine]})
+      console.log(this.state.submarine, "- submarine vertical")
+      if(this.state.submarine.length >= compareSubmarine.length){
+        this.setState({submarine: this.state.submarine});
+      }
+    } else if (selectedboat === "carrier" && this.state.turn === "Vertical" ) {
+      this.setState({carrier: [`${i}${j}`, `${i+1}${j}`, `${i+2}${j}`, `${i+3}${j}`, `${i+4}${j}`, ...this.state.carrier]})
+      console.log(this.state.carrier, "- carrier vertical")
+      if(this.state.carrier.length >= compareCarrier.length){
+        this.setState({carrier: this.state.carrier});
       }   
     }
+
     this.handleshoot(i,j)
   }
 
@@ -180,6 +211,16 @@ class App extends React.Component {
     // console.log("X = ", i, "Y = ", j)
   }
 
+  changePosition(){
+    console.log("Turn")
+    this.setState({turn: "Vertical"})
+
+    if ( this.state.turn === "Vertical" ){
+      this.setState({turn: "Orizontal"})
+    }
+
+  }
+
   render() {
     console.log("state toucharray",this.state.touchArray,"state destroyer", this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.destroyerIa);
@@ -215,6 +256,7 @@ class App extends React.Component {
               <ButtonShips text="submarine" onClick={this.handleChooseShip} />
               <ButtonShips text="carrier" onClick={this.handleChooseShip} />
               </div>
+              <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
             </div>
             
             <div className="col-5">
