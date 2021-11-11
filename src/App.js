@@ -14,7 +14,7 @@ import ButtonShip3 from'./assets/ButtonShip-3.png';
 import ButtonShip4 from'./assets/ButtonShip-4.png';
 import ButtonShip5 from'./assets/ButtonShip-5.png';
 import Rotate from'./assets/rotate.png';
-// import Sea from'./assets/sea.svg'
+import Sea from'./assets/sea.svg'
 
 
 class App extends React.Component {
@@ -48,6 +48,7 @@ class App extends React.Component {
     this.handleshoot = this.handleshoot.bind(this)
     this.changePosition = this.changePosition.bind(this)
     this.shootIa = this.shootIa.bind(this)
+    this.reset = this.reset.bind(this)
     // this.gameOver = this.gameOver.bind(this)
   }
 
@@ -301,11 +302,11 @@ class App extends React.Component {
 
     if (this.state.fleetIA === 0) {
       this.setState({
-        message: "You win !"
+        message: "Gagné ! Tu veux rejouer ? Clique sur reset _" 
       })
     } else if (this.state.fleetPlayer === 1) {
       this.setState({
-        message: "Game over, you loose !"
+        message: "Tu as perdu !"
       })
     }
     console.log("flotteIA",this.state.fleetIA)
@@ -358,6 +359,27 @@ class App extends React.Component {
     }
   }
 
+  reset() {
+    this.setState({
+      selectedboat: "",
+      destroyer: [],
+      cruiser: [],
+      submarine: [],
+      carrier: [],
+      destroyerIa: [],
+      cruiserIa: [],
+      submarineIa: [],
+      carrierIa: [],
+      touchArray: [],
+      touchArrayIa: [],
+      flopAray: [],
+      message: "Positonner votre flotte et cliquer sur Start",
+      turn: "Orizontal",
+      fleetPlayer: 4,
+      fleetIA: 4,
+    })
+  }
+
   render() {
     // console.log("state toucharray", this.state.touchArray, "state destroyer", this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.destroyerIa);
@@ -396,10 +418,10 @@ class App extends React.Component {
                     onclick={this.chooseIa}
                   />
                   <button 
-                    className="buttonRestart"
-                    // onClick={}
+                    className="buttonReset"
+                    onClick={this.reset} 
                   >
-                    RESTART
+                    RESET
                   </button>
                 </div>
               </div>
@@ -449,8 +471,16 @@ class App extends React.Component {
             </div>
               
           </div>
-
-          <div className="sea"></div>
+         
+          {this.state.message === "Gagné ! Tu veux rejouer ? Clique sur reset _" ? 
+            <div className="seaAnimation">
+             <img src={Sea} alt="sea"/>
+            </div>
+            : 
+            <div className="sea">
+              <img src={Sea} alt="sea"/>
+            </div>}
+  
         </div>
 
       </>
