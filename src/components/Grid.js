@@ -27,17 +27,15 @@ class Grid
     }
 
     render() { 
-       
         // ici les props passer dans grid dans app.js
         const { updateBoatPosition, destroyer, cruiser, submarine, carrier , touchArray, flopAray } = this.props
         // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonné d un bateau corresponde a la coordonné de la case cliquer et qui lui pase un background gris dans classname
         return (
-            
             <div className="container-fluid" >
                 {this.state.grid.map((row,i) => (  
                     <div key={i} className="row" style={{ height: 40 }}>
                         {row.map((col,j) => {
-                            // les ternaires pour le backgroud de la case selectionner
+                            // les ternaires pour le backgroud de la case selectionnée
                             const flopBoat = flopAray.includes(`${i}${j}`)
                             const touchBoat = touchArray.includes(`${i}${j}`) 
                             const carrierClass = carrier.includes(`${i}${j}`) ? `bg-secondary`  : ""
@@ -45,12 +43,16 @@ class Grid
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             return(
-                                <div key={j} onClick={() => updateBoatPosition(i, j)} className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`} style={{ width: 40, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
-                                    <div >
-                                        {!touchBoat && !flopBoat && <h6 style={{ paddingLeft: 10, paddingTop: 5 }}>{col}</h6>}
-                                        {touchBoat && <img src={explosion} alt="ship explosion" style={{ width: "100%", height: "auto" }}/>}
-                                        {flopBoat && <h6 style={{ paddingLeft: 10, paddingTop: 5 }} >X</h6>}
-                                    </div>
+                                <div 
+                                    key={j} 
+                                    onClick={() => updateBoatPosition(i, j)} 
+                                    className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`} 
+                                    style={{ width: 40, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
+                                        <div >
+                                            {(!touchBoat && !flopBoat) && <h6 style={{ paddingLeft: 10, paddingTop: 5 }}>{col}</h6>}
+                                            {touchBoat && <img src={explosion} alt="ship explosion" style={{ width: "100%", height: "auto" }}/>}
+                                            {flopBoat && <h6 style={{ paddingLeft: 10, paddingTop: 5 }}>X</h6>}
+                                        </div>
                                 </div>
                         )})}
                     </div>
