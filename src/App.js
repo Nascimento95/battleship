@@ -34,9 +34,11 @@ class App extends React.Component {
       touchArray: [],
       flopAray: [],
       message: "",
-      turn: "Horizontal",
-      fleetPlayer: 0,
-      fleetIA: 0,
+      turn: "Orizontal",
+      fleetPlayer: 4,
+      fleetIA: 4,
+      scorePlayer: 0,
+      scoreIA: 0,
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
@@ -239,28 +241,31 @@ class App extends React.Component {
       if(destroyerTouch.length === this.state.destroyerIa.length){
         this.setState({
           message: "destroyer coulé",
-          fleetPlayer: this.state.fleetPlayer +1
-      })
-      
+          fleetIA: this.state.fleetIA -1
+
+        })
       }
+
       if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
           message: "cruiser coulé",
-          fleetPlayer: this.state.fleetPlayer +1
+          fleetIA: this.state.fleetIA -1
         })
       }
+    
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
           message: "submarine coulé",
-          fleetPlayer: this.state.fleetPlayer +1
+          fleetiA: this.state.fleetIA -1,
         })
       }
+
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
           message: "carrier coulé",
-          fleetPlayer: this.state.fleetPlayer +1
+          fleetIA: this.state.fleetIA -1
         })
-      }
+      } 
 
     // console.log("X = ", i, "Y = ", j)
   }
@@ -288,8 +293,10 @@ class App extends React.Component {
 
             <div className="grid">
               <Score 
+                
                 scorePlayer = {this.state.fleetPlayer}
-                typeofPlayer="Player" />
+                typeofPlayer="Player"
+                 />
               <Grid
                 carrier={this.state.carrier}
                 submarine={this.state.submarine}
@@ -342,6 +349,7 @@ class App extends React.Component {
 
             <div className="grid">
               <Score 
+                scoreIa={this.state.fleetIA}
                 typeofPlayer="Computer" />
               <Grid
                 carrier={this.state.carrierIa}
