@@ -249,8 +249,7 @@ class App extends React.Component {
       }
     }
 
-
-
+    
   if (this.state.destroyerIa.includes(positionShoot)) {
 
     if (this.state.destroyerIa.includes(positionShoot)) {
