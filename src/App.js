@@ -46,13 +46,23 @@ class App extends React.Component {
     this.updateBoatPosition = this.updateBoatPosition.bind(this)
     this.chooseIa = this.chooseIa.bind(this)
     this.handleshoot = this.handleshoot.bind(this)
-    this.displayMessage = this.displayMessage.bind(this)
     this.changePosition = this.changePosition.bind(this)
     this.shootIa = this.shootIa.bind(this)
+    // this.gameOver = this.gameOver.bind(this)
   }
-  displayMessage() {
 
-  }
+  // gameOver() {
+  //   if (this.state.fleetIA === 0) {
+  //     this.setState({
+  //       message: "You win !"
+  //     })
+  //   } else if (this.state.fleetPlayer === 0) {
+  //     this.setState({
+  //       message: "Game over, you loose !"
+  //     })
+  //   }
+  // }
+
   chooseIa() {
     let positionDestroyer = ["11"]
     let positionCruiser = ["31"]
@@ -91,7 +101,8 @@ class App extends React.Component {
       destroyerIa: positionDestroyer,
       cruiserIa: positionCruiser,
       submarineIa: positionSubmarine,
-      carrierIa: positionCarrier
+      carrierIa: positionCarrier,
+      message: "Tirer sur l'ennemi",
     })
 
   }
@@ -104,6 +115,7 @@ class App extends React.Component {
   // avec des condition elle nous dit si nous avon selection le bouton destroyeur ,carier etc ...
   // et apres sa nous permet de push dans le tableau correspondant au boutton les valeur des parametre de la function qui sont case cliquer
   // nous avon aussi des condition qui nous permette de ne pas depasser le nombre de case que correspond le bateau choisi
+  
   updateBoatPosition(i, j) {
     const { selectedboat } = this.state
     const compareDestroyeur = ["1", "1"]
@@ -137,7 +149,6 @@ class App extends React.Component {
       // console.log(this.state.carrier, "- carrier log")
       if (this.state.carrier.length >= compareCarrier.length) {
         this.setState({ carrier: this.state.carrier });
-
       }
     }
 
@@ -146,14 +157,12 @@ class App extends React.Component {
       // console.log(this.state.destroyer, "- destroyer vertical")
       if (this.state.destroyer.length >= compareDestroyeur.length) {
         this.setState({ destroyer: this.state.destroyer });
-
       }
     } else if (selectedboat === "cruiser" && this.state.turn === "Vertical") {
       this.setState({ cruiser: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, ...this.state.cruiser] })
       // console.log(this.state.cruiser, "- cruiser vertical")
       if (this.state.cruiser.length >= compareCruiser.length) {
         this.setState({ cruiser: this.state.cruiser });
-
       }
     } else if (selectedboat === "submarine" && this.state.turn === "Vertical") {
       this.setState({ submarine: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, `${i + 3}${j}`, ...this.state.submarine] })
@@ -177,120 +186,130 @@ class App extends React.Component {
     let submarineTouch = []
     let carrierTouch = []
     let positionShoot = `${i}${j}`
-    let botIa = 5
+    let botIa = 4
+
+
     for(let i = 0 ; i < this.state.destroyerIa.length ; i++){
       let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.destroyerIa[i])
-       if(isTouch){
-           destroyerTouch= [this.state.destroyerIa[i], ...destroyerTouch]
+       if (isTouch) {
+           destroyerTouch= [this.state.destroyerIa, ...destroyerTouch]
        }
     } 
+    
     for(let i = 0 ; i < this.state.cruiserIa.length ; i++){
     let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.cruiserIa[i])
      if(isTouch){
       cruiserTouch= [this.state.cruiserIa[i], ...cruiserTouch]
-    }
+      }
     } 
+
     for(let i = 0 ; i < this.state.submarineIa.length ; i++){
       let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.submarineIa[i])
         if(isTouch){
           submarineTouch= [this.state.submarineIa[i], ...submarineTouch]
         }
     } 
+    
     for(let i = 0 ; i < this.state.carrierIa.length ; i++){
       let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.carrierIa[i])
         if(isTouch){
           carrierTouch= [this.state.carrierIa[i], ...carrierTouch]
         }
     }
-
-    if(destroyerTouch.length === this.state.destroyerIa.length){
-      this.setState({
-        message: "destroyer coulé",
-        fleetIA: this.state.fleetIA -1,
-        
-      })
-      botIa = botIa -1
-      destroyerTouch = []
-      if(this.state.fleetIA < botIa){
-        this.setState({fleetIA: this.state.fleetIA})
-      }
-    } 
-    
-    if(cruiserTouch.length === this.state.cruiserIa.length){
-      this.setState({
-        message: "cruiser coulé",
-        fleetIA: this.state.fleetIA -1
-      })
-      botIa = botIa -1
-      cruiserTouch = []
-      if(this.state.fleetIA < botIa){
-        this.setState({fleetIA: this.state.fleetIA})
-      }
-    }
-    
-    if(submarineTouch.length === this.state.submarineIa.length){
-      this.setState({
-        message: "cruiser coulé",
-        fleetIA: this.state.fleetIA -1
-
-      })
-      botIa = botIa -1
-      // submarineTouch = []
-      if(this.state.fleetIA < botIa){
-        this.setState({fleetIA: this.state.fleetIA})
-      }
-    }
-
-    if(carrierTouch.length === this.state.carrierIa.length){
-      this.setState({
-        message: "carrier coulé",
-        fleetIA: this.state.fleetIA -1
-
-      })
-      botIa = botIa -1
-      // submarineTouch = []
-      if(this.state.fleetIA < botIa){
-        this.setState({fleetIA: this.state.fleetIA})
-      }
-    }
-
-
+    console.log("destroyer", destroyerTouch)
+    console.log("destroyerIA", this.state.destroyerIa)
 
     if (this.state.destroyerIa.includes(positionShoot)) {
-
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché"
+        message: "touché !"
       })
+        if (destroyerTouch.length === this.state.destroyerIa.length) {
+        this.setState({
+          message: "torpilleur coulé",
+          fleetIA: this.state.fleetIA - 1,  
+        })
+        // botIa = botIa -1
+        // destroyerTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
+    }
+
     } else if (this.state.cruiserIa.includes(positionShoot)) {
       console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché"
-      })
-        
+        message: "touché !"
+      })   
+        if(cruiserTouch.length === this.state.cruiserIa.length){
+        this.setState({
+          message: "croiseur coulé",
+          fleetIA: this.state.fleetIA - 1
+        })
+        // botIa = botIa -1
+        // cruiserTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
+      }
 
     } else if (this.state.submarineIa.includes(positionShoot)) {
       console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché"
+        message: "touché !"
       })
+      if(submarineTouch.length === this.state.submarineIa.length){
+        this.setState({
+          message: "sous-marin coulé",
+          fleetIA: this.state.fleetIA - 1
+        })
+        // botIa = botIa -1
+        // // submarineTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
+      }
+
     } else if (this.state.carrierIa.includes(positionShoot)) {
       console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché"
+        message: "touché !"
       })
-    }
-    else {
+      if(carrierTouch.length === this.state.carrierIa.length){
+        this.setState({
+          message: "porte-avion coulé !",
+          fleetIA: this.state.fleetIA -1
+        })
+        // botIa = botIa -1
+        // // submarineTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
+      }
+
+    } else {
       this.setState({
         flopAray: [positionShoot, ...this.state.flopAray],
-        message: "flop"
+        message: "flop !"
       })
     }
         // console.log(" destoyer touch haha",destroyerTouch,"destroyer state IA" ,this.state.destroyerIa);
     // console.log("X = ", i, "Y = ", j)
+
+    if (this.state.fleetIA === 0) {
+      this.setState({
+        message: "You win !"
+      })
+    } else if (this.state.fleetPlayer === 1) {
+      this.setState({
+        message: "Game over, you loose !"
+      })
+    }
+    console.log("flotteIA",this.state.fleetIA)
+    console.log("botIA", botIa)
   }
 
   changePosition() {
@@ -300,7 +319,6 @@ class App extends React.Component {
     if ( this.state.turn === "Vertical" ){
       this.setState({turn: "Horizontal"})
     }
-
   }
 
   shootIa(i,j){
@@ -311,35 +329,34 @@ class App extends React.Component {
 
       this.setState({
         touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché"
+        message: "touché !"
       })
     } else if (this.state.cruiser.includes(positionShootIa)) {
       console.log("touché");
       this.setState({
         touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché"
+        message: "touché !"
       })
     } else if (this.state.submarine.includes(positionShootIa)) {
       console.log("touché");
       this.setState({
         touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché"
+        message: "touché !"
       })
     } else if (this.state.carrier.includes(positionShootIa)) {
       console.log("touché");
       this.setState({
         touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché"
+        message: "touché !"
       })
     }
     else {
       this.setState({
         flopAray: [positionShootIa, ...this.state.flopAray],
-        message: "flop"
+        message: "flop !"
       })
     }
   }
-
 
   render() {
     // console.log("state toucharray", this.state.touchArray, "state destroyer", this.state.destroyerIa);
@@ -352,11 +369,10 @@ class App extends React.Component {
            
           <div className="game">
 
-            <div className="grid">
+            <div>
               <Score 
-                
                 scorePlayer = {this.state.fleetPlayer}
-                typeofPlayer="Player"
+                typeofPlayer="Votre flotte"
                  />
               <Grid
                 carrier={this.state.carrier}
@@ -371,13 +387,21 @@ class App extends React.Component {
             </div>
 
             <div className="infos">
-              <div className="">
+              <div>
                 <Message
                   message={this.state.message}
                 />
-                <ButtonStart
-                  onclick={this.chooseIa}
-                />
+                <div className="buttons">
+                  <ButtonStart
+                    onclick={this.chooseIa}
+                  />
+                  <button 
+                    className="buttonRestart"
+                    // onClick={}
+                  >
+                    RESTART
+                  </button>
+                </div>
               </div>
               <div className="mt-4">
                 <ButtonShips 
@@ -409,16 +433,16 @@ class App extends React.Component {
               </div>  
             </div>
 
-            <div className="grid">
+            <div>
               <Score 
                 scoreIa={this.state.fleetIA}
-                typeofPlayer="Computer" />
+                typeofPlayer="Flotte de l'ennemi" />
               <Grid
                 carrier={this.state.carrierIa}
                 submarine={this.state.submarineIa}
                 cruiser={this.state.cruiserIa}
                 destroyer={this.state.destroyerIa}
-                updateBoatPosition={this.handleshoot}
+                updateBoatPosition={this.handleshoot} 
                 touchArray={this.state.touchArray}
                 flopAray={this.state.flopAray}
               />
@@ -428,6 +452,7 @@ class App extends React.Component {
 
           <div className="sea"></div>
         </div>
+
       </>
 
     )
