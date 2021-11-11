@@ -8,18 +8,15 @@ class ButtonShips extends Component {
         
         const {text, image, onClick } = this.props
         return (
-            <>
                 <div
                 shipname={text} 
                 onClick={()=>onClick(text)}
+                className="buttonShip"
                 >
-                    <img 
-                    src={image} 
-                    alt={text}
-                    className="buttonShip" 
-                    />
+                <img src={image} alt="ship" />
+                {text}
                 </div>
-            </>
+            
         );
     }
 }

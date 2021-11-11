@@ -35,7 +35,7 @@ class Grid
             
             <div className="container-fluid" >
                 {this.state.grid.map((row,i) => (  
-                    <div key={i} className="row">
+                    <div key={i} className="row" style={{ height: 40 }}>
                         {row.map((col,j) => {
                             // les ternaires pour le backgroud de la case selectionner
                             const flopBoat = flopAray.includes(`${i}${j}`)
@@ -45,11 +45,11 @@ class Grid
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             return(
-                                <div key={j} onClick={() => updateBoatPosition(i, j)}className={`col-1 py-2 ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`}>
-                                    <div>
-                                        {!touchBoat && !flopBoat && <h6>{col} </h6>}
-                                        {touchBoat && <img src={explosion} alt="ship explosion" className="pr-2" style={{ maxWidth: "150%", height: "auto" }}/>}
-                                        {flopBoat && <h6>X</h6>}
+                                <div key={j} onClick={() => updateBoatPosition(i, j)} className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} border border-1`} style={{ width: 40, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
+                                    <div >
+                                        {!touchBoat && !flopBoat && <h6 style={{ paddingLeft: 10, paddingTop: 5 }}>{col}</h6>}
+                                        {touchBoat && <img src={explosion} alt="ship explosion" style={{ width: "100%", height: "auto" }}/>}
+                                        {flopBoat && <h6 style={{ paddingLeft: 10, paddingTop: 5 }} >X</h6>}
                                     </div>
                                 </div>
                         )})}

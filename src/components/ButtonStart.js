@@ -19,26 +19,16 @@ class ButtonStart  extends React.Component {
     };
   
     render() {
-      // const { onclick } = this.props
+  
       return (
-        <div className="col-7 d-flex justify-content-end">
-            <div className="col-3">
+        <div>
           <button 
             className="buttonStart" 
             onClick={this.handleClick} 
-            // style={{ 
-            //   background: "#7B2B19",
-            //   border:"1px solid #FFFFFF",
-            //   boxSizing: "border-box",
-            //   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
-            //   fontFamily: "Allerta Stencil, sans-serif"
-            // }} 
           >
             START
           </button>
-    
-          </div>
-          </div>
+        </div>
         
         );
       }

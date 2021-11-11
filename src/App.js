@@ -9,10 +9,11 @@ import ButtonShips from './components/ButtonShips';
 import ButtonStart from './components/ButtonStart';
 
 import LogoSite from'./assets/Logo-site.png';
-import ButtonShip2 from'./assets/Button-ship-2.png';
-import ButtonShip3 from'./assets/Button-ship-3.png';
-import ButtonShip4 from'./assets/Button-ship-4.png';
-import ButtonShip5 from'./assets/Button-ship-5.png';
+import ButtonShip2 from'./assets/ButtonShip-2.png';
+import ButtonShip3 from'./assets/ButtonShip-3.png';
+import ButtonShip4 from'./assets/ButtonShip-4.png';
+import ButtonShip5 from'./assets/ButtonShip-5.png';
+import Rotate from'./assets/rotate.png';
 // import Sea from'./assets/sea.svg'
 
 
@@ -282,8 +283,10 @@ class App extends React.Component {
       <>
         <img className="logo-site" src={LogoSite} alt="Battleship" />
         <div className="content">
-          <div className="row justify-content-between mt-5 pb-5">
-            <div className="col-5 ms-4">
+           
+          <div className="game">
+
+            <div className="grid">
               <Score 
                 scorePlayer = {this.state.fleetPlayer}
                 typeofPlayer="Player" />
@@ -297,24 +300,49 @@ class App extends React.Component {
                 flopAray={[]}
               />
             </div>
-            <div className="col-1 d-flex flex-column justify-content-center">
-              <Message
-                message={this.state.message}
-              />
-              <ButtonStart
-                onclick={this.chooseIa}
-              />
-              <div className="mt-4">
-                <ButtonShips text="destroyer" image={ButtonShip2} onClick={this.handleChooseShip} />
-                <ButtonShips text="cruiser" image={ButtonShip3}  onClick={this.handleChooseShip} />
-                <ButtonShips text="submarine" image={ButtonShip4} onClick={this.handleChooseShip} />
-                <ButtonShips text="carrier" image={ButtonShip5}  onClick={this.handleChooseShip} />
+
+            <div className="infos">
+              <div className="">
+                <Message
+                  message={this.state.message}
+                />
+                <ButtonStart
+                  onclick={this.chooseIa}
+                />
               </div>
-              <button className="btn btn-primary" onClick={this.changePosition}>{this.state.turn}</button>
+              <div className="mt-4">
+                <ButtonShips 
+                  text="destroyer" 
+                  image={ButtonShip2} 
+                  onClick={this.handleChooseShip} 
+                />
+                <ButtonShips 
+                  text="cruiser" 
+                  image={ButtonShip3}  
+                  onClick={this.handleChooseShip} 
+                />
+                <ButtonShips 
+                  text="submarine" 
+                  image={ButtonShip4} 
+                  onClick={this.handleChooseShip} 
+                />
+                <ButtonShips 
+                  text="carrier" 
+                  image={ButtonShip5}  
+                  onClick={this.handleChooseShip} 
+                />
+                <button 
+                  className="rotate btn btn-light p-1 mt-2" 
+                  onClick={this.changePosition}
+                >
+                  <img src={Rotate} alt="rotate ship" />
+                </button>
+              </div>  
             </div>
 
-            <div className="col-5">
-              <Score typeofPlayer="Computer" />
+            <div className="grid">
+              <Score 
+                typeofPlayer="Computer" />
               <Grid
                 carrier={this.state.carrierIa}
                 submarine={this.state.submarineIa}
@@ -324,9 +352,9 @@ class App extends React.Component {
                 touchArray={this.state.touchArray}
                 flopAray={this.state.flopAray}
               />
-
-              </div>
             </div>
+              
+          </div>
 
           <div className="sea"></div>
         </div>

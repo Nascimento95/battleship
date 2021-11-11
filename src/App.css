@@ -26,6 +26,7 @@ p {
   font-family: 'Allerta Stencil', sans-serif;
 }
 
+
 /* Design */
 
 .logo-site {
@@ -34,6 +35,35 @@ p {
   margin-left: auto;
   margin-right: auto;
   width: 25%; 
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: url("./assets/target.png") 4 12, auto;
+}
+
+.infos {
+  margin-left: 40px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+
+}
+
+.message {
+  height: 100px;
+  background-color: #20405C;
+  border: 6px ridge rgba(229,229,229,0.84);
+  box-sizing: border-box;
+  color: #97DA29;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-transform: uppercase; 
+  overflow-wrap: anywhere;
+  font-size: 18px;
 }
 
 .sea {
@@ -48,10 +78,8 @@ p {
   overflow: hidden;
 }
 
-/* .button {
-   background-color: #7B2B19;
-  padding: 5px, 20px;
-} */
+
+/* Buttons */
 
 .buttonStart {
   font-family: 'Allerta Stencil', sans-serif;
@@ -72,17 +100,30 @@ p {
 }
 
 .buttonShip {
-  height: 30px;
-  margin-top: 10px;
-  border: 1px solid #2d2d2d;
-  border-radius: 5px;
-  box-shadow: 0px 5px 0px #2d2d2d;
-  position: relative;
-  top: 0px;
-  transition: all ease 0.3s;
+  margin-top: 5px;
+  font-family: 'Allerta Stencil', sans-serif;
+  font-size: 14px;
+  color: #20405C; 
+  text-transform: uppercase; 
 }
 
-.buttonShip:active {
-  box-shadow: 0 3px 0 #2d2d2d;
-  top: 4px;
+.buttonShip img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.buttonShip img:hover {
+  background-color:#6D6E6F ;
+}
+
+.buttonShip img:visited {
+  background-color:#6D6E6F ;
+}
+
+.rotate img {
+  width: 20px;
+}
+
+.rotate:hover {
+  background-color:#6D6E6F ;
 }
