@@ -34,7 +34,7 @@ class App extends React.Component {
       touchArray: [],
       touchArrayIa: [],
       flopAray: [],
-      message: "Positionner votre flotte puis cliquer sur start _",
+      message: "Positonner votre flotte et cliquer sur Start",
       turn: "Orizontal",
       fleetPlayer: 4,
       fleetIA: 4,
@@ -97,13 +97,13 @@ class App extends React.Component {
   }
 
   handleChooseShip(e) {
+    // console.log(e)
     this.setState({ selectedboat: e })
   }
   // la function updateboatPosition Recupere en parametre les index des div de mon state grid dans grid.js
   // avec des condition elle nous dit si nous avon selection le bouton destroyeur ,carier etc ...
   // et apres sa nous permet de push dans le tableau correspondant au boutton les valeur des parametre de la function qui sont case cliquer
   // nous avon aussi des condition qui nous permette de ne pas depasser le nombre de case que correspond le bateau choisi
-  
   updateBoatPosition(i, j) {
     const { selectedboat } = this.state
     const compareDestroyeur = ["1", "1"]
@@ -116,24 +116,28 @@ class App extends React.Component {
       // console.log(this.state.destroyer, "- destroyer log")
       if (this.state.destroyer.length >= compareDestroyeur.length) {
         this.setState({ destroyer: this.state.destroyer });
+
       }
     } else if (selectedboat === "cruiser") {
       this.setState({ cruiser: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, ...this.state.cruiser] })
       // console.log(this.state.cruiser, "- cruiser log")
       if (this.state.cruiser.length >= compareCruiser.length) {
         this.setState({ cruiser: this.state.cruiser });
+
       }
     } else if (selectedboat === "submarine") {
       this.setState({ submarine: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, ...this.state.submarine] })
       // console.log(this.state.submarine, "- submarine log")
       if (this.state.submarine.length >= compareSubmarine.length) {
         this.setState({ submarine: this.state.submarine });
+
       }
     } else if (selectedboat === "carrier") {
       this.setState({ carrier: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, `${i}${j + 4}`, ...this.state.carrier] })
       // console.log(this.state.carrier, "- carrier log")
       if (this.state.carrier.length >= compareCarrier.length) {
         this.setState({ carrier: this.state.carrier });
+
       }
     }
 
@@ -142,12 +146,14 @@ class App extends React.Component {
       // console.log(this.state.destroyer, "- destroyer vertical")
       if (this.state.destroyer.length >= compareDestroyeur.length) {
         this.setState({ destroyer: this.state.destroyer });
+
       }
     } else if (selectedboat === "cruiser" && this.state.turn === "Vertical") {
       this.setState({ cruiser: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, ...this.state.cruiser] })
       // console.log(this.state.cruiser, "- cruiser vertical")
       if (this.state.cruiser.length >= compareCruiser.length) {
         this.setState({ cruiser: this.state.cruiser });
+
       }
     } else if (selectedboat === "submarine" && this.state.turn === "Vertical") {
       this.setState({ submarine: [`${i}${j}`, `${i + 1}${j}`, `${i + 2}${j}`, `${i + 3}${j}`, ...this.state.submarine] })
@@ -172,7 +178,6 @@ class App extends React.Component {
     let carrierTouch = []
     let positionShoot = `${i}${j}`
     let botIa = 5
-
     for(let i = 0 ; i < this.state.destroyerIa.length ; i++){
       let isTouch = [positionShoot, ...this.state.touchArray].includes(this.state.destroyerIa[i])
        if(isTouch){
@@ -249,10 +254,10 @@ class App extends React.Component {
       }
     }
 
-    
-  if (this.state.destroyerIa.includes(positionShoot)) {
+
 
     if (this.state.destroyerIa.includes(positionShoot)) {
+
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché"
@@ -263,6 +268,8 @@ class App extends React.Component {
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché"
       })
+        
+
     } else if (this.state.submarineIa.includes(positionShoot)) {
       console.log("touché");
       this.setState({
@@ -284,7 +291,7 @@ class App extends React.Component {
     }
         // console.log(" destoyer touch haha",destroyerTouch,"destroyer state IA" ,this.state.destroyerIa);
     // console.log("X = ", i, "Y = ", j)
-  }}
+  }
 
   changePosition() {
     console.log("Turn")
@@ -293,9 +300,10 @@ class App extends React.Component {
     if ( this.state.turn === "Vertical" ){
       this.setState({turn: "Horizontal"})
     }
+
   }
 
-  shootIa(i,j) {
+  shootIa(i,j){
     console.log(" position des shoot iA",i,j);
     let positionShootIa = `${i}${j}`
     // condition 
@@ -331,6 +339,7 @@ class App extends React.Component {
       })
     }
   }
+
 
   render() {
     // console.log("state toucharray", this.state.touchArray, "state destroyer", this.state.destroyerIa);
