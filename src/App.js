@@ -40,7 +40,6 @@ class App extends React.Component {
       fleetIA: 4,
       scorePlayer: 0,
       scoreIA: 0,
-      gridHover: "false"
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
@@ -111,7 +110,9 @@ class App extends React.Component {
 
   handleChooseShip(e) {
     // console.log(e)
-    this.setState({ selectedboat: e })
+    this.setState({ 
+      selectedboat: e,
+    })
   }
   // la function updateboatPosition Recupere en parametre les index des div de mon state grid dans grid.js
   // avec des condition elle nous dit si nous avon selection le bouton destroyeur ,carier etc ...
@@ -126,28 +127,36 @@ class App extends React.Component {
     const compareCarrier = ["1", "1", "1", "1", "1"]
 
     if (selectedboat === "destroyer") {
-      this.setState({ destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer] });
+      this.setState({ 
+        destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer], 
+      });
       // console.log(this.state.destroyer, "- destroyer log")
       if (this.state.destroyer.length >= compareDestroyeur.length) {
         this.setState({ destroyer: this.state.destroyer });
 
       }
     } else if (selectedboat === "cruiser") {
-      this.setState({ cruiser: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, ...this.state.cruiser] })
+      this.setState({ 
+        cruiser: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, ...this.state.cruiser],  
+      })
       // console.log(this.state.cruiser, "- cruiser log")
       if (this.state.cruiser.length >= compareCruiser.length) {
         this.setState({ cruiser: this.state.cruiser });
 
       }
     } else if (selectedboat === "submarine") {
-      this.setState({ submarine: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, ...this.state.submarine] })
+      this.setState({ 
+        submarine: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, ...this.state.submarine], 
+      })
       // console.log(this.state.submarine, "- submarine log")
       if (this.state.submarine.length >= compareSubmarine.length) {
         this.setState({ submarine: this.state.submarine });
 
       }
     } else if (selectedboat === "carrier") {
-      this.setState({ carrier: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, `${i}${j + 4}`, ...this.state.carrier] })
+      this.setState({ 
+        carrier: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, `${i}${j + 3}`, `${i}${j + 4}`, ...this.state.carrier],
+      })
       // console.log(this.state.carrier, "- carrier log")
       if (this.state.carrier.length >= compareCarrier.length) {
         this.setState({ carrier: this.state.carrier });
@@ -298,7 +307,7 @@ class App extends React.Component {
         message: "flop !"
       })
     }
-        // console.log(" destoyer touch haha",destroyerTouch,"destroyer state IA" ,this.state.destroyerIa);
+      // console.log(" destoyer touch haha",destroyerTouch,"destroyer state IA" ,this.state.destroyerIa);
     // console.log("X = ", i, "Y = ", j)
 
     if (this.state.fleetIA === 0) {
@@ -406,6 +415,7 @@ class App extends React.Component {
                 touchArray={this.state.touchArrayIa}
                 flopAray={[]}
                 shootIa={this.shootIa}
+                mouseGrid={this.state.gridHover}
               />
             </div>
 
