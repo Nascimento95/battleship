@@ -35,8 +35,8 @@ class App extends React.Component {
       touchArrayIa: [],
       flopAray: [],
       flopArayIa: [],
-      message: "Positionner votre flotte et cliquer sur Start",
-      turn: "Orizontal",
+      message: "Positionner votre flotte et cliquer sur Start _",
+      turn: "Horizontal",
       fleetPlayer: 4,
       fleetIA: 4,
       scorePlayer: 0,
@@ -100,7 +100,7 @@ class App extends React.Component {
       cruiserIa: positionCruiser,
       submarineIa: positionSubmarine,
       carrierIa: positionCarrier,
-      message: "Tirer sur l'ennemi",
+      message: "Tirer sur l'ennemi _",
     })
 
   }
@@ -176,7 +176,7 @@ class App extends React.Component {
         this.setState({ carrier: this.state.carrier });
       }
     }
-    
+    console.log("fleetPlayer",this.state.fleetPlayer)
   }
 
   handleshoot(i, j) {
@@ -221,12 +221,12 @@ class App extends React.Component {
     if (this.state.destroyerIa.includes(positionShoot)) {
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
+        message: "touché ! _",
         amIPLaying: false
       })
         if (destroyerTouch.length === this.state.destroyerIa.length) {
         this.setState({
-          message: "torpilleur ennemi coulé",
+          message: "torpilleur ennemi coulé ! _",
           fleetIA: this.state.fleetIA - 1,  
           amIPLaying: false
         })
@@ -236,12 +236,12 @@ class App extends React.Component {
       // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
+        message: "touché ! _",
         amIPLaying: false
       })   
         if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
-          message: "croiseur ennemi coulé",
+          message: "croiseur ennemi coulé ! _",
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
@@ -251,12 +251,12 @@ class App extends React.Component {
       // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
+        message: "touché ! _",
         amIPLaying: false
       })
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
-          message: "sous-marin ennemi coulé",
+          message: "sous-marin ennemi coulé! _",
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
@@ -267,12 +267,12 @@ class App extends React.Component {
       // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
+        message: "touché ! _",
         amIPLaying: false
       })
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
-          message: "porte-avion ennemi coulé !",
+          message: "porte-avion ennemi coulé ! _",
           fleetIA: this.state.fleetIA -1,
           amIPLaying: false
         })
@@ -282,7 +282,7 @@ class App extends React.Component {
     } else {
       this.setState({
         flopAray: [positionShoot, ...this.state.flopAray],
-        message: "flop !",
+        message: "flop ! _",
         amIPLaying: false
       })
     }
@@ -295,7 +295,7 @@ class App extends React.Component {
       })
     } else if (this.state.fleetPlayer === 0) {
       this.setState({
-        message: "Tu as perdu !"
+        message: "Tu as perdu ! _"
       })
     }
     console.log("flotteIA",this.state.fleetIA)
@@ -432,7 +432,7 @@ class App extends React.Component {
     console.log("log du desctroyer touch",destroyerTouchIa);
 
   }
-
+  
 
   reset() {
     this.setState({
@@ -471,7 +471,7 @@ class App extends React.Component {
 
             <div>
               <Score 
-                scorePlayer = {this.state.fleetPlayer}
+                fleet = {this.state.fleetPlayer}
                 typeofPlayer="Votre flotte"
                  />
               <Grid
@@ -525,17 +525,18 @@ class App extends React.Component {
                   onClick={this.handleChooseShip} 
                 />
                 <button 
-                  className="rotate btn btn-light p-1 mt-2" 
+                  className="rotate mt-2 py-1 d-flex justify-content-center vertical-align-center" 
                   onClick={this.changePosition}
                 >
-                  <img src={Rotate} alt="rotate ship" />
+                  <img src={Rotate} alt="rotate ship"/>
+                  {this.state.turn}
                 </button>
               </div>  
             </div>
 
             <div>
               <Score 
-                scoreIa={this.state.fleetIA}
+                fleet={this.state.fleetIA}
                 typeofPlayer="Flotte de l'ennemi" />
               <Grid
                 carrier={[]}
@@ -551,15 +552,18 @@ class App extends React.Component {
               
           </div>
          
-          {this.state.message === "Gagné ! Tu veux rejouer ? Clique sur reset _" ? 
+          <footer>
+            {this.state.message === "Gagné ! Tu veux rejouer ? Clique sur reset _" ? 
             <div className="seaAnimation">
-             <img src={Sea} alt="sea"/>
+              <img src={Sea} alt="sea"/>
             </div>
             : 
             <div className="sea">
               <img src={Sea} alt="sea"/>
-            </div>}
-  
+            </div>}    
+            {/* <p>Jeu développé par Hélène Soubeyrand, Alin Manole, Marco Nascimento et Ahmed Elmutsim dans le cadre de la formation Fullstack JS de Konexio</p> */}
+          </footer>
+
         </div>
 
       </>

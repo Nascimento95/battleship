@@ -33,7 +33,7 @@ class Grid
             
             <div className="container-fluid grid" >
                 {this.state.grid.map((row,i) => (  
-                    <div key={i} className="row" style={{ height: 30 }}>
+                    <div key={i} className="row" style={{ height: 40 }}>
                         {row.map((col,j) => {
                             // les ternaires pour le backgroud de la case selectionnée
                             const flopBoat = flopAray.includes(`${i}${j}`)
@@ -48,7 +48,7 @@ class Grid
                                     key={j} 
                                     onClick={() => {updateBoatPosition(i, j)}} 
                                     className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} mouseGrid border border-1`} 
-                                    style={{ width: 30, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
+                                    style={{ width: 40, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
                                         <div >
                                             {(!touchBoat && !flopBoat) && <h6 style={{ paddingLeft: 5 }}>{col}</h6>}
                                             {touchBoat && <img src={explosion} alt="ship explosion" style={{ width: "100%", height: "auto" }}/>}

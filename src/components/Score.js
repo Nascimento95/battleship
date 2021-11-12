@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class Score extends Component {
 
     render() {
-        const { typeofPlayer, scorePlayer, scoreIa } = this.props 
+        const { typeofPlayer, fleet } = this.props 
         return (
             <div className="text-center pb-2">
-                <h6>{typeofPlayer} : {typeofPlayer === "Player" ? `${scorePlayer}` : `${scoreIa}`}</h6>
+                <h6>{typeofPlayer} : {fleet}</h6>
             </div>
         );
     }
