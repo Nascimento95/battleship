@@ -183,6 +183,15 @@ class App extends React.Component {
     
   }
 
+
+
+
+
+
+
+
+  
+
   handleshoot(i, j) {
     let destroyerTouch = []
     let cruiserTouch = []
