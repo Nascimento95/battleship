@@ -4,9 +4,6 @@ body {
   background-color: #A8C1C7;
 }
 
-.content {
-  height: 100vh;
-}
 
 h4 {
   font-family: 'Allerta Stencil', sans-serif;
@@ -44,13 +41,20 @@ p {
   cursor: url("./assets/target.png") 4 12, auto;
 }
 
+.grid {
+  border: 6px ridge rgba(229,229,229,0.84);
+}
+
+.mouseGrid:hover {
+   background-color: #6D6E6F;
+}
+
 .infos {
   margin-left: 40px;
   margin-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center
-
 }
 
 .message {
@@ -68,23 +72,31 @@ p {
 }
 
 .sea {
-  background-image: url("assets/sea.svg");
-  background-position: top;
+  position: absolute;
   width: 100%;
-  height: 50%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  height: 40%;
   overflow: hidden;
+  border: 2px, solid, red;
+}
+
+.seaAnimation {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  transform: translateY(-130px); 
+  transition: all ease 1s;
 }
 
 
 /* Buttons */
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .buttonStart {
-  margin-left: auto;
-  margin-right: auto;
   font-family: 'Allerta Stencil', sans-serif;
   color: #FFFFFF;
   background-color: #7B2B19;
@@ -99,6 +111,24 @@ p {
 
 .buttonStart:active {
   box-shadow: 0 3px 0 #4E1A0F;
+  top: 4px;
+}
+
+.buttonReset{
+  font-family: 'Allerta Stencil', sans-serif;
+  color: #FFFFFF;
+  background-color: #878686;
+  border: 1px solid #c1c1c1;
+  border-radius: 5px;
+  box-shadow: 0px 5px 0px #484848;
+  padding: 5px 20px;
+  position: relative;
+  top: 0px;
+  transition: all ease 0.3s;
+}
+
+.buttonReset:active {
+  box-shadow: 0 3px 0 #484848;
   top: 4px;
 }
 
@@ -119,7 +149,7 @@ p {
   background-color:#6D6E6F ;
 }
 
-.buttonShip img:visited {
+.buttonShip img:active {
   background-color:#6D6E6F ;
 }
 
