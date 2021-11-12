@@ -40,6 +40,7 @@ class App extends React.Component {
       fleetIA: 4,
       scorePlayer: 0,
       scoreIA: 0,
+      gridHover: "false"
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
@@ -304,7 +305,7 @@ class App extends React.Component {
       this.setState({
         message: "Gagné ! Tu veux rejouer ? Clique sur reset _" 
       })
-    } else if (this.state.fleetPlayer === 1) {
+    } else if (this.state.fleetPlayer === 0) {
       this.setState({
         message: "Tu as perdu !"
       })
