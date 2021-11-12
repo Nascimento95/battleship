@@ -35,7 +35,7 @@ class App extends React.Component {
       touchArrayIa: [],
       flopAray: [],
       flopArayIa: [],
-      message: "Positonner votre flotte et cliquer sur Start",
+      message: "Positionner votre flotte et cliquer sur Start",
       turn: "Orizontal",
       fleetPlayer: 4,
       fleetIA: 4,
@@ -122,8 +122,10 @@ class App extends React.Component {
     const compareCarrier = ["1", "1", "1", "1", "1"]
     
     if (selectedboat === "destroyer") {
-      this.setState({ destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer] });
-      // console.log(this.state.destroyer, "- destroyer log")
+      this.setState({ 
+        destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer],
+      });
+      console.log(this.gridHover, "gridHover")
       console.log(i, j)
       if (this.state.destroyer.length >= compareDestroyeur.length || i === 0 || j === 0 )  {
         this.setState({ destroyer: this.state.destroyer });
@@ -449,7 +451,7 @@ class App extends React.Component {
       touchArrayIa: [],
       flopAray: [],
       flopArayIa: [],
-      message: "Positonner votre flotte et cliquer sur Start",
+      message: "Positionner votre flotte et cliquer sur Start",
       turn: "Orizontal",
       fleetPlayer: 4,
       fleetIA: 4,
@@ -483,6 +485,7 @@ class App extends React.Component {
                 touchArray={this.state.touchArrayIa}
                 flopAray={this.state.flopArayIa}
                 shootIa={this.shootIa}
+                gridHover={this.gridHover}
               />
             </div>
 
@@ -551,7 +554,7 @@ class App extends React.Component {
               
           </div>
          
-          {this.state.message === "Gagné ! Tu veux rejouer ? Clique sur reset _" ? 
+          {this.fleetPlayer === 0 || this.fleetIA === 0 ? 
             <div className="seaAnimation">
              <img src={Sea} alt="sea"/>
             </div>

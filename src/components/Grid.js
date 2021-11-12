@@ -42,12 +42,12 @@ class Grid
                             const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary`  : ""
-                     
+                
                             return(
                                 <div 
                                     key={j} 
                                     onClick={() => {updateBoatPosition(i, j)}} 
-                                    className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} mouseGrid border border-1`} 
+                                    className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} mouseGrid border border-1`}
                                     style={{ width: 30, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
                                         <div >
                                             {(!touchBoat && !flopBoat) && <h6 style={{ paddingLeft: 5 }}>{col}</h6>}
