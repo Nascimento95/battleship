@@ -120,7 +120,7 @@ class App extends React.Component {
     const compareCruiser = ["1", "1", "1"]
     const compareSubmarine = ["1", "1", "1", "1"]
     const compareCarrier = ["1", "1", "1", "1", "1"]
-    
+
     if (selectedboat === "destroyer") {
       this.setState({ 
         destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer],
@@ -181,6 +181,14 @@ class App extends React.Component {
     
   }
 
+
+
+
+
+
+
+  
+
   handleshoot(i, j) {
     let destroyerTouch = []
     let cruiserTouch = []
@@ -217,29 +225,31 @@ class App extends React.Component {
           carrierTouch= [this.state.carrierIa[i], ...carrierTouch]
         }
     }
-    // console.log("destroyer", destroyerTouch)
-    // console.log("destroyerIA", this.state.destroyerIa)
+    console.log("destroyer", destroyerTouch)
+    console.log("destroyerIA", this.state.destroyerIa)
 
     if (this.state.destroyerIa.includes(positionShoot)) {
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
-        amIPLaying: false
+        message: "touché !"
       })
         if (destroyerTouch.length === this.state.destroyerIa.length) {
         this.setState({
           message: "torpilleur ennemi coulé",
           fleetIA: this.state.fleetIA - 1,  
-          amIPLaying: false
         })
-      }
+        // botIa = botIa -1
+        // destroyerTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
+    }
 
     } else if (this.state.cruiserIa.includes(positionShoot)) {
       // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
-        amIPLaying: false
+        message: "touché !"
       })   
         if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
@@ -247,14 +257,18 @@ class App extends React.Component {
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
+        // botIa = botIa -1
+        // cruiserTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
       }
 
     } else if (this.state.submarineIa.includes(positionShoot)) {
       // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
-        amIPLaying: false
+        message: "touché !"
       })
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
@@ -262,15 +276,18 @@ class App extends React.Component {
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
-        
+        // botIa = botIa -1
+        // // submarineTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
       }
 
     } else if (this.state.carrierIa.includes(positionShoot)) {
       // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !",
-        amIPLaying: false
+        message: "touché !"
       })
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
@@ -278,14 +295,17 @@ class App extends React.Component {
           fleetIA: this.state.fleetIA -1,
           amIPLaying: false
         })
-        
+        // botIa = botIa -1
+        // // submarineTouch = []
+        // if(this.state.fleetIA < botIa){
+        //   this.setState({fleetIA: this.state.fleetIA})
+        // }
       }
 
     } else {
       this.setState({
         flopAray: [positionShoot, ...this.state.flopAray],
-        message: "flop !",
-        amIPLaying: false
+        message: "flop !"
       })
     }
         // console.log(" destoyer touch haha",destroyerTouch,"destroyer state IA" ,this.state.destroyerIa);
@@ -483,7 +503,7 @@ class App extends React.Component {
                 destroyer={this.state.destroyer}
                 updateBoatPosition={this.updateBoatPosition}
                 touchArray={this.state.touchArrayIa}
-                flopAray={this.state.flopArayIa}
+                flopAray={[]}
                 shootIa={this.shootIa}
                 gridHover={this.gridHover}
               />
@@ -548,7 +568,6 @@ class App extends React.Component {
                 updateBoatPosition={this.handleshoot} 
                 touchArray={this.state.touchArray}
                 flopAray={this.state.flopAray}
-                shootIa={() => {}}
               />
             </div>
               
