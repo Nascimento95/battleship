@@ -41,7 +41,6 @@ class App extends React.Component {
       fleetIA: 4,
       scorePlayer: 0,
       scoreIA: 0,
-      gridHover: "false",
       amIPLaying: true
     }
 
@@ -57,21 +56,10 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(!this.state.amIPLaying) {
-      this.shootIa()
+      // this.shootIa()
+      setTimeout(() => { this.shootIa() }, 1000);
     }
   }
-
-  // gameOver() {
-  //   if (this.state.fleetIA === 0) {
-  //     this.setState({
-  //       message: "You win !"
-  //     })
-  //   } else if (this.state.fleetPlayer === 0) {
-  //     this.setState({
-  //       message: "Game over, you loose !"
-  //     })
-  //   }
-  // }
 
   chooseIa() {
     let positionDestroyer = ["11"]
@@ -136,10 +124,11 @@ class App extends React.Component {
     if (selectedboat === "destroyer") {
       this.setState({ destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer] });
       // console.log(this.state.destroyer, "- destroyer log")
-      if (this.state.destroyer.length >= compareDestroyeur.length) {
+      console.log(i, j)
+      if (this.state.destroyer.length >= compareDestroyeur.length || i === 0 || j === 0 )  {
         this.setState({ destroyer: this.state.destroyer });
-
       }
+
     } else if (selectedboat === "cruiser") {
       this.setState({ cruiser: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, ...this.state.cruiser] })
       // console.log(this.state.cruiser, "- cruiser log")
@@ -237,14 +226,14 @@ class App extends React.Component {
       })
         if (destroyerTouch.length === this.state.destroyerIa.length) {
         this.setState({
-          message: "torpilleur coulé",
+          message: "torpilleur ennemi coulé",
           fleetIA: this.state.fleetIA - 1,  
           amIPLaying: false
         })
       }
 
     } else if (this.state.cruiserIa.includes(positionShoot)) {
-      console.log("touché");
+      // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché !",
@@ -252,14 +241,14 @@ class App extends React.Component {
       })   
         if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
-          message: "croiseur coulé",
+          message: "croiseur ennemi coulé",
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
       }
 
     } else if (this.state.submarineIa.includes(positionShoot)) {
-      console.log("touché");
+      // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché !",
@@ -267,7 +256,7 @@ class App extends React.Component {
       })
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
-          message: "sous-marin coulé",
+          message: "sous-marin ennemi coulé",
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
@@ -275,7 +264,7 @@ class App extends React.Component {
       }
 
     } else if (this.state.carrierIa.includes(positionShoot)) {
-      console.log("touché");
+      // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché !",
@@ -283,7 +272,7 @@ class App extends React.Component {
       })
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
-          message: "porte-avion coulé !",
+          message: "porte-avion ennemi coulé !",
           fleetIA: this.state.fleetIA -1,
           amIPLaying: false
         })
@@ -363,7 +352,6 @@ class App extends React.Component {
         }
     }
 
-
     if(destroyer.length !== 0 && cruiser.length !== 0 && submarine.length !== 0 && carrier.length !== 0) {
       // console.log(" position des shoot iA",i,j);
       // let positionShootIa = `${i}${j}`
@@ -375,7 +363,7 @@ class App extends React.Component {
         })
           if (destroyerTouchIa.length === this.state.destroyer.length) {
             this.setState({
-              message: "destroyer joueur coulé",
+              message: "torpilleur joueur coulé",
               fleetPlayer: this.state.fleetPlayer - 1,  
               amIPLaying:true
             })
@@ -430,8 +418,21 @@ class App extends React.Component {
       }
     }
 
+    if (this.state.fleetIA === 0) {
+      this.setState({
+        message: "Gagné ! Tu veux rejouer ? Clique sur reset _" 
+      })
+    } else if (this.state.fleetPlayer === 0) {
+      this.setState({
+        message: "Tu as perdu !"
+      })
+    }
+   
+    console.log("log de la flotte du player",this.state.fleetPlayer);
+    console.log("log du desctroyer touch",destroyerTouchIa);
 
   }
+
 
   reset() {
     this.setState({
@@ -447,10 +448,13 @@ class App extends React.Component {
       touchArray: [],
       touchArrayIa: [],
       flopAray: [],
+      flopArayIa: [],
       message: "Positonner votre flotte et cliquer sur Start",
       turn: "Orizontal",
       fleetPlayer: 4,
       fleetIA: 4,
+      scorePlayer: 0,
+      scoreIA: 0,
       amIPLaying: true
     })
   }
