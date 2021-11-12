@@ -34,6 +34,7 @@ class App extends React.Component {
       touchArray: [],
       touchArrayIa: [],
       flopAray: [],
+      flopArayIa: [],
       message: "Positonner votre flotte et cliquer sur Start",
       turn: "Orizontal",
       fleetPlayer: 4,
@@ -308,7 +309,6 @@ class App extends React.Component {
     let positionShootIa = `${i}${j}`
     // condition 
     if (this.state.destroyer.includes(positionShootIa)) {
-
       this.setState({
         touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
         message: "touché"
@@ -334,7 +334,7 @@ class App extends React.Component {
     }
     else {
       this.setState({
-        flopAray: [positionShootIa, ...this.state.flopAray],
+        flopArayIa: [positionShootIa, ...this.state.flopArayIa],
         message: "flop"
       })
     }
