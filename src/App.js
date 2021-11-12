@@ -41,7 +41,8 @@ class App extends React.Component {
       fleetIA: 4,
       scorePlayer: 0,
       scoreIA: 0,
-      gridHover: "false"
+      gridHover: "false",
+      amIPLaying: true
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
@@ -52,6 +53,12 @@ class App extends React.Component {
     this.shootIa = this.shootIa.bind(this)
     this.reset = this.reset.bind(this)
     // this.gameOver = this.gameOver.bind(this)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(!this.state.amIPLaying) {
+      // fonction pour l'ia
+    }
   }
 
   // gameOver() {
@@ -125,7 +132,7 @@ class App extends React.Component {
     const compareCruiser = ["1", "1", "1"]
     const compareSubmarine = ["1", "1", "1", "1"]
     const compareCarrier = ["1", "1", "1", "1", "1"]
-
+    
     if (selectedboat === "destroyer") {
       this.setState({ destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer] });
       // console.log(this.state.destroyer, "- destroyer log")
@@ -225,12 +232,14 @@ class App extends React.Component {
     if (this.state.destroyerIa.includes(positionShoot)) {
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !"
+        message: "touché !",
+        amIPLaying: false
       })
         if (destroyerTouch.length === this.state.destroyerIa.length) {
         this.setState({
           message: "torpilleur coulé",
           fleetIA: this.state.fleetIA - 1,  
+          amIPLaying: false
         })
         // botIa = botIa -1
         // destroyerTouch = []
@@ -243,12 +252,14 @@ class App extends React.Component {
       console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !"
+        message: "touché !",
+        amIPLaying: false
       })   
         if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
           message: "croiseur coulé",
-          fleetIA: this.state.fleetIA - 1
+          fleetIA: this.state.fleetIA - 1,
+          amIPLaying: false
         })
         // botIa = botIa -1
         // cruiserTouch = []
@@ -261,12 +272,14 @@ class App extends React.Component {
       console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !"
+        message: "touché !",
+        amIPLaying: false
       })
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
           message: "sous-marin coulé",
-          fleetIA: this.state.fleetIA - 1
+          fleetIA: this.state.fleetIA - 1,
+          amIPLaying: false
         })
         // botIa = botIa -1
         // // submarineTouch = []
@@ -279,12 +292,14 @@ class App extends React.Component {
       console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
-        message: "touché !"
+        message: "touché !",
+        amIPLaying: false
       })
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
           message: "porte-avion coulé !",
-          fleetIA: this.state.fleetIA -1
+          fleetIA: this.state.fleetIA -1,
+          amIPLaying: false
         })
         // botIa = botIa -1
         // // submarineTouch = []
@@ -296,7 +311,8 @@ class App extends React.Component {
     } else {
       this.setState({
         flopAray: [positionShoot, ...this.state.flopAray],
-        message: "flop !"
+        message: "flop !",
+        amIPLaying: false
       })
     }
         // console.log(" destoyer touch haha",destroyerTouch,"destroyer state IA" ,this.state.destroyerIa);
@@ -325,38 +341,42 @@ class App extends React.Component {
   }
 
   shootIa(i,j){
-    console.log(" position des shoot iA",i,j);
-    let positionShootIa = `${i}${j}`
-    // condition 
-    if (this.state.destroyer.includes(positionShootIa)) {
-      this.setState({
-        touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché !"
-      })
-    } else if (this.state.cruiser.includes(positionShootIa)) {
-      console.log("touché");
-      this.setState({
-        touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché !"
-      })
-    } else if (this.state.submarine.includes(positionShootIa)) {
-      console.log("touché");
-      this.setState({
-        touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché !"
-      })
-    } else if (this.state.carrier.includes(positionShootIa)) {
-      console.log("touché");
-      this.setState({
-        touchArrayIa: [positionShootIa, ...this.state.touchArrayIa],
-        message: "touché !"
-      })
-    }
-    else {
-      this.setState({
-        flopAray: [positionShootIa, ...this.state.flopAray],
-        message: "flop !"
-      })
+    const { destroyer, cruiser, submarine, carrier, touchArrayIa, flopArayIa } = this.state
+
+    if(destroyer.length !== 0 && cruiser.length !== 0 && submarine.length !== 0 && carrier.length !== 0) {
+      console.log(" position des shoot iA",i,j);
+      let positionShootIa = `${i}${j}`
+      // condition 
+      if (destroyer.includes(positionShootIa)) {
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+      } else if (cruiser.includes(positionShootIa)) {
+        console.log("touché");
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+      } else if (submarine.includes(positionShootIa)) {
+        console.log("touché");
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+      } else if (carrier.includes(positionShootIa)) {
+        console.log("touché");
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+      }
+      else {
+        this.setState({
+          flopArayIa: [positionShootIa, ...flopArayIa],
+          message: "flop !"
+        })
+      }
     }
   }
 
@@ -378,6 +398,7 @@ class App extends React.Component {
       turn: "Orizontal",
       fleetPlayer: 4,
       fleetIA: 4,
+      amIPLaying: true
     })
   }
 
@@ -385,6 +406,7 @@ class App extends React.Component {
     // console.log("state toucharray", this.state.touchArray, "state destroyer", this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.destroyerIa);
     // console.log("destroyeru iA",this.state.cruiserIa);
+    console.log("touch",this.state.touchArrayIa,"flop ia",this.state.flopArayIa);
     return (
       <>
         <img className="logo-site" src={LogoSite} alt="Battleship" />
@@ -404,7 +426,7 @@ class App extends React.Component {
                 destroyer={this.state.destroyer}
                 updateBoatPosition={this.updateBoatPosition}
                 touchArray={this.state.touchArrayIa}
-                flopAray={[]}
+                flopAray={this.state.flopArayIa}
                 shootIa={this.shootIa}
               />
             </div>
@@ -468,6 +490,7 @@ class App extends React.Component {
                 updateBoatPosition={this.handleshoot} 
                 touchArray={this.state.touchArray}
                 flopAray={this.state.flopAray}
+                shootIa={() => {}}
               />
             </div>
               
