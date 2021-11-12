@@ -37,7 +37,7 @@ class Grid
                         {row.map((col,j) => {
                             // les ternaires pour le backgroud de la case selectionnée
                             const flopBoat = flopAray.includes(`${i}${j}`)
-                            const touchBoat = touchArray.includes(`${i}${j}`) 
+                            const touchBoat = touchArray.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const carrierClass = carrier.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary`  : ""
                             const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
