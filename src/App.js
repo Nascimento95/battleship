@@ -541,10 +541,10 @@ class App extends React.Component {
                 scoreIa={this.state.fleetIA}
                 typeofPlayer="Flotte de l'ennemi" />
               <Grid
-                carrier={this.state.carrierIa}
-                submarine={this.state.submarineIa}
-                cruiser={this.state.cruiserIa}
-                destroyer={this.state.destroyerIa}
+                carrier={[]}
+                submarine={[]}
+                cruiser={[]}
+                destroyer={[]}
                 updateBoatPosition={this.handleshoot} 
                 touchArray={this.state.touchArray}
                 flopAray={this.state.flopAray}
