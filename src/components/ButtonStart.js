@@ -14,22 +14,26 @@ class ButtonStart  extends React.Component {
     max = 100;
   
     handleClick = () => {
-      this.setState({random: this.min + (Math.random() * (this.max - this.min))});
+      this.setState({random: Math.floor(this.min + (Math.random() * (this.max - this.min))) });
+     this.props.onclick()
     };
   
     render() {
+  
       return (
-        <div className="col-7 d-flex justify-content-end">
-            <div className="col-3">
-          <button className="btn btn-primary"onClick={this.handleClick }>START</button>
-          {this.state.random}
-          </div>
-          </div>
+        <div>
+          <button 
+            className="buttonStart" 
+            onClick={this.handleClick} 
+          >
+            START
+          </button>
+        </div>
         
         );
       }
     }
-    // vvvvvvvvvv
+    
   
   export default ButtonStart 
 
