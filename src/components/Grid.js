@@ -52,7 +52,7 @@ class Grid
                                         <div >
                                             {(!touchBoat && !flopBoat) && <h6 style={{ paddingLeft: 5 }}>{col}</h6>}
                                             {touchBoat && <img src={explosion} alt="ship explosion" style={{ width: "100%", height: "auto" }}/>}
-                                            {flopBoat && <h6 style={{ paddingLeft: 5 }}>X</h6>}
+                                            {flopBoat && <h6 style={{ paddingLeft: 10, paddingTop: 5  }}>X</h6>}
                                         </div>
                                 </div>
                             )})}
