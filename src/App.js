@@ -41,7 +41,7 @@ class App extends React.Component {
       fleetIA: 4,
       scorePlayer: 0,
       scoreIA: 0,
-      gridHover: "false"
+      amIPLaying: true
     }
 
     this.handleChooseShip = this.handleChooseShip.bind(this)
@@ -54,17 +54,12 @@ class App extends React.Component {
     // this.gameOver = this.gameOver.bind(this)
   }
 
-  // gameOver() {
-  //   if (this.state.fleetIA === 0) {
-  //     this.setState({
-  //       message: "You win !"
-  //     })
-  //   } else if (this.state.fleetPlayer === 0) {
-  //     this.setState({
-  //       message: "Game over, you loose !"
-  //     })
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if(!this.state.amIPLaying) {
+      // this.shootIa()
+      setTimeout(() => { this.shootIa() }, 1000);
+    }
+  }
 
   chooseIa() {
     let positionDestroyer = ["11"]
@@ -129,10 +124,11 @@ class App extends React.Component {
     if (selectedboat === "destroyer") {
       this.setState({ destroyer: [`${i}${j}`, `${i}${j + 1}`, ...this.state.destroyer] });
       // console.log(this.state.destroyer, "- destroyer log")
-      if (this.state.destroyer.length >= compareDestroyeur.length) {
+      console.log(i, j)
+      if (this.state.destroyer.length >= compareDestroyeur.length || i === 0 || j === 0 )  {
         this.setState({ destroyer: this.state.destroyer });
-
       }
+
     } else if (selectedboat === "cruiser") {
       this.setState({ cruiser: [`${i}${j}`, `${i}${j + 1}`, `${i}${j + 2}`, ...this.state.cruiser] })
       // console.log(this.state.cruiser, "- cruiser log")
@@ -237,7 +233,7 @@ class App extends React.Component {
       })
         if (destroyerTouch.length === this.state.destroyerIa.length) {
         this.setState({
-          message: "torpilleur coulé",
+          message: "torpilleur ennemi coulé",
           fleetIA: this.state.fleetIA - 1,  
         })
         // botIa = botIa -1
@@ -248,15 +244,16 @@ class App extends React.Component {
     }
 
     } else if (this.state.cruiserIa.includes(positionShoot)) {
-      console.log("touché");
+      // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché !"
       })   
         if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
-          message: "croiseur coulé",
-          fleetIA: this.state.fleetIA - 1
+          message: "croiseur ennemi coulé",
+          fleetIA: this.state.fleetIA - 1,
+          amIPLaying: false
         })
         // botIa = botIa -1
         // cruiserTouch = []
@@ -266,15 +263,16 @@ class App extends React.Component {
       }
 
     } else if (this.state.submarineIa.includes(positionShoot)) {
-      console.log("touché");
+      // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché !"
       })
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
-          message: "sous-marin coulé",
-          fleetIA: this.state.fleetIA - 1
+          message: "sous-marin ennemi coulé",
+          fleetIA: this.state.fleetIA - 1,
+          amIPLaying: false
         })
         // botIa = botIa -1
         // // submarineTouch = []
@@ -284,15 +282,16 @@ class App extends React.Component {
       }
 
     } else if (this.state.carrierIa.includes(positionShoot)) {
-      console.log("touché");
+      // console.log("touché");
       this.setState({
         touchArray: [positionShoot, ...this.state.touchArray],
         message: "touché !"
       })
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
-          message: "porte-avion coulé !",
-          fleetIA: this.state.fleetIA -1
+          message: "porte-avion ennemi coulé !",
+          fleetIA: this.state.fleetIA -1,
+          amIPLaying: false
         })
         // botIa = botIa -1
         // // submarineTouch = []
@@ -360,13 +359,183 @@ class App extends React.Component {
         message: "touché !"
       })
     }
-    else {
+
+    if(destroyer.length !== 0 && cruiser.length !== 0 && submarine.length !== 0 && carrier.length !== 0) {
+      // console.log(" position des shoot iA",i,j);
+      // let positionShootIa = `${i}${j}`
+      // condition 
+      if (destroyer.includes(positionShootIa)) {
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+          if (destroyerTouchIa.length === this.state.destroyer.length) {
+            this.setState({
+              message: "torpilleur joueur coulé",
+              fleetPlayer: this.state.fleetPlayer - 1,  
+              amIPLaying:true
+            })
+          }
+      } else if (cruiser.includes(positionShootIa)) {
+        // console.log("touché");
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+          if(cruiserTouchIa.length === this.state.cruiser.length){
+                this.setState({
+                  message: "croiseur joueur coulé",
+                  fleetPlayer: this.state.fleetPlayer - 1,
+                  amIPLaying: true
+                })
+          }      
+      } else if (submarine.includes(positionShootIa)) {
+        // console.log("touché");
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+          if(submarineTouchIa.length === this.state.submarine.length){
+                this.setState({
+                  message: "sous-marin coulé",
+                  fleetPlayer: this.state.fleetPlayer - 1,
+                  amIPLaying: true
+                })
+          } 
+
+      } else if (carrier.includes(positionShootIa)) {
+        console.log("touché");
+        this.setState({
+          touchArrayIa: [positionShootIa, ...touchArrayIa],
+          message: "touché !"
+        })
+          if(carrierTouchIa.length === this.state.carrier.length){
+                this.setState({
+                  message: "porte-avion joueur coulé !",
+                  fleetPlayer: this.state.fleetPlayer -1,
+                  amIPLaying: true
+                })
+          }
+      }
+      else {
+        this.setState({
+          flopArayIa: [positionShootIa, ...flopArayIa],
+          message: "flop !",
+          amIPLaying : true
+        })
+      }
+    }
+
+    if (this.state.fleetIA === 0) {
       this.setState({
-        flopAray: [positionShootIa, ...this.state.flopAray],
-        message: "flop !"
+        message: "Gagné ! Tu veux rejouer ? Clique sur reset _" 
+      })
+    } else if (this.state.fleetPlayer === 0) {
+      this.setState({
+        message: "Tu as perdu !"
       })
     }
+    // for(let i = 0 ; i < this.state.destroyer.length ; i++){
+    //   let isTouch = [positionShootIa, ...this.state.touchArray].includes(this.state.destroyer[i])
+    //    if (isTouch) {
+    //        destroyerTouchIa= [this.state.destroyer, ...destroyerTouchIa]
+    //    }
+    // } 
+    
+    // for(let i = 0 ; i < this.state.cruiser.length ; i++){
+    // let isTouch = [positionShootIa, ...this.state.touchArrayIa].includes(this.state.cruiser[i])
+    //  if(isTouch){
+    //   cruiserTouchIa= [this.state.cruiser[i], ...cruiserTouchIa]
+    //   }
+    // } 
+
+    // for(let i = 0 ; i < this.state.submarine.length ; i++){
+    //   let isTouch = [positionShootIa, ...this.state.touchArrayIa].includes(this.state.submarine[i])
+    //     if(isTouch){
+    //       submarineTouchIa= [this.state.submarine[i], ...submarineTouchIa]
+    //     }
+    // } 
+    
+    // for(let i = 0 ; i < this.state.carrier.length ; i++){
+    //   let isTouch = [positionShootIa, ...this.state.touchArrayIa].includes(this.state.carrier[i])
+    //     if(isTouch){
+    //       carrierTouchIa= [this.state.carrier[i], ...carrierTouchIa]
+    //     }
+    // }
+    console.log("log de la flotte du player",this.state.fleetPlayer);
+    console.log("log du desctroyer touch",destroyerTouchIa);
+      //  conpare le tableau des tir toucher de lia avec la valeur des tableau du joueur
+    // if (this.state.destroyer.includes(positionShoot)) {
+    //   this.setState({
+    //     touchArray: [positionShoot, ...this.state.touchArray],
+    //     message: "touché !",
+    //     amIPLaying: false
+    //   })
+    //     if (destroyerTouch.length === this.state.destroyerIa.length) {
+    //     this.setState({
+    //       message: "torpilleur coulé",
+    //       fleetIA: this.state.fleetIA - 1,  
+    //       amIPLaying: false
+    //     })
+    //   }
+
+    // } else if (this.state.cruiserIa.includes(positionShoot)) {
+    //   console.log("touché");
+    //   this.setState({
+    //     touchArray: [positionShoot, ...this.state.touchArray],
+    //     message: "touché !",
+    //     amIPLaying: false
+    //   })   
+    //     if(cruiserTouch.length === this.state.cruiserIa.length){
+    //     this.setState({
+    //       message: "croiseur coulé",
+    //       fleetIA: this.state.fleetIA - 1,
+    //       amIPLaying: false
+    //     })
+    //   }
+
+    // } else if (this.state.submarineIa.includes(positionShoot)) {
+    //   console.log("touché");
+    //   this.setState({
+    //     touchArray: [positionShoot, ...this.state.touchArray],
+    //     message: "touché !",
+    //     amIPLaying: false
+    //   })
+    //   if(submarineTouch.length === this.state.submarineIa.length){
+    //     this.setState({
+    //       message: "sous-marin coulé",
+    //       fleetIA: this.state.fleetIA - 1,
+    //       amIPLaying: false
+    //     })
+        
+    //   }
+
+    // } else if (this.state.carrierIa.includes(positionShoot)) {
+    //   console.log("touché");
+    //   this.setState({
+    //     touchArray: [positionShoot, ...this.state.touchArray],
+    //     message: "touché !",
+    //     amIPLaying: false
+    //   })
+    //   if(carrierTouch.length === this.state.carrierIa.length){
+    //     this.setState({
+    //       message: "porte-avion coulé !",
+    //       fleetIA: this.state.fleetIA -1,
+    //       amIPLaying: false
+    //     })
+        
+    //   }
+
+    // } else {
+    //   this.setState({
+    //     flopAray: [positionShoot, ...this.state.flopAray],
+    //     message: "flop !",
+    //     amIPLaying: false
+    //   })
+    // }
+
   }
+
 
   reset() {
     this.setState({
@@ -382,10 +551,14 @@ class App extends React.Component {
       touchArray: [],
       touchArrayIa: [],
       flopAray: [],
+      flopArayIa: [],
       message: "Positonner votre flotte et cliquer sur Start",
       turn: "Orizontal",
       fleetPlayer: 4,
       fleetIA: 4,
+      scorePlayer: 0,
+      scoreIA: 0,
+      amIPLaying: true
     })
   }
 
