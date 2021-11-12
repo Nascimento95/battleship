@@ -246,7 +246,7 @@ class App extends React.Component {
       })
         if (destroyerTouch.length === this.state.destroyerIa.length) {
         this.setState({
-          message: "torpilleur coulé",
+          message: "torpilleur ennemi coulé",
           fleetIA: this.state.fleetIA - 1,  
           amIPLaying: false
         })
@@ -261,7 +261,7 @@ class App extends React.Component {
       })   
         if(cruiserTouch.length === this.state.cruiserIa.length){
         this.setState({
-          message: "croiseur coulé",
+          message: "croiseur ennemi coulé",
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
@@ -276,7 +276,7 @@ class App extends React.Component {
       })
       if(submarineTouch.length === this.state.submarineIa.length){
         this.setState({
-          message: "sous-marin coulé",
+          message: "sous-marin ennemi coulé",
           fleetIA: this.state.fleetIA - 1,
           amIPLaying: false
         })
@@ -292,7 +292,7 @@ class App extends React.Component {
       })
       if(carrierTouch.length === this.state.carrierIa.length){
         this.setState({
-          message: "porte-avion coulé !",
+          message: "porte-avion ennemi coulé !",
           fleetIA: this.state.fleetIA -1,
           amIPLaying: false
         })
@@ -367,7 +367,6 @@ class App extends React.Component {
         }
     }
 
-
     if(destroyer.length !== 0 && cruiser.length !== 0 && submarine.length !== 0 && carrier.length !== 0) {
       console.log(" position des shoot iA",i,j);
       let positionShootIa = `${i}${j}`
@@ -379,7 +378,7 @@ class App extends React.Component {
         })
           if (destroyerTouchIa.length === this.state.destroyer.length) {
             this.setState({
-              message: "destroyer joueur coulé",
+              message: "torpilleur joueur coulé",
               fleetPlayer: this.state.fleetPlayer - 1,  
               amIPLaying:true
             })
