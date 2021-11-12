@@ -47,7 +47,7 @@ class Grid
                                 <div 
                                     key={j} 
                                     onClick={() => {updateBoatPosition(i, j)}} 
-                                    className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass}  border border-1`} 
+                                    className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} mouseGrid border border-1`} 
                                     style={{ width: 30, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
                                         <div >
                                             {(!touchBoat && !flopBoat) && <h6 style={{ paddingLeft: 5 }}>{col}</h6>}
