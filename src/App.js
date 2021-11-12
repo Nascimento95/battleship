@@ -56,7 +56,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(!this.state.amIPLaying) {
-      // fonction pour l'ia
+      this.shootIa()
     }
   }
 
@@ -340,12 +340,17 @@ class App extends React.Component {
     }
   }
 
-  shootIa(i,j){
+  shootIa(){
+    let min = 1
+    let max = 10
     let destroyerTouchIa = []
     let cruiserTouchIa = []
     let submarineTouchIa = []
     let carrierTouchIa = []
-    let positionShootIa = `${i}${j}`
+    // let positionShootIa = `${i}${j}`
+    let tirI = Math.floor(min + (Math.random() * (max - min))) ;
+    let tirJ = Math.floor(min + (Math.random() * (max - min)));
+    let positionShootIa = `${tirI}${tirJ}`
     const { destroyer, cruiser, submarine, carrier, touchArrayIa, flopArayIa } = this.state
 
     for(let i = 0 ; i < this.state.destroyer.length ; i++){
@@ -378,8 +383,8 @@ class App extends React.Component {
 
 
     if(destroyer.length !== 0 && cruiser.length !== 0 && submarine.length !== 0 && carrier.length !== 0) {
-      console.log(" position des shoot iA",i,j);
-      let positionShootIa = `${i}${j}`
+      
+      // let positionShootIa = `${i}${j}`
       // condition 
       if (destroyer.includes(positionShootIa)) {
         this.setState({
