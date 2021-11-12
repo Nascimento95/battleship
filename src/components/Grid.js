@@ -46,7 +46,7 @@ class Grid
                             return(
                                 <div 
                                     key={j} 
-                                    onClick={() => {updateBoatPosition(i, j);shootIa(i,j)}} 
+                                    onClick={() => {updateBoatPosition(i, j)}} 
                                     className={`col ${destroyerClass} ${cruiserClass} ${submarineClass} ${carrierClass} ${mouseGrid} border border-1`} 
                                     style={{ width: 30, paddingRight: 0, paddingLeft: 0, paddingTop: 0 }}>
                                         <div >
