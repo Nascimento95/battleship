@@ -27,7 +27,7 @@ class Grid
 
     render() { 
         // ici les props passer dans grid dans app.js
-        const { updateBoatPosition, destroyer, cruiser, submarine, carrier , touchArray, flopAray, mouseGrid,shootIa } = this.props
+        const { updateBoatPosition, destroyer, cruiser, submarine, carrier , touchArray, flopAray, shootIa } = this.props
         // dans le maps nous avons 4 variable const (des ternaire) qui permette de vérifier si les coordonné d un bateau corresponde a la coordonné de la case cliquer et qui lui pase un background gris dans classname
         return (
             
@@ -38,11 +38,11 @@ class Grid
                             // les ternaires pour le backgroud de la case selectionnée
                             const flopBoat = flopAray.includes(`${i}${j}`)
                             const touchBoat = touchArray.includes(`${i}${j}`) 
-                            const carrierClass = carrier.includes(`${i}${j}`) ? `bg-secondary `  : ""
-                            const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary `  : ""
-                            const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary `  : ""
-                            const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary `  : ""
-                            
+                            const carrierClass = carrier.includes(`${i}${j}`) ? `bg-secondary`  : ""
+                            const submarineClass = submarine.includes(`${i}${j}`) ? `bg-secondary`  : ""
+                            const destroyerClass = destroyer.includes(`${i}${j}`) ? `bg-secondary`  : ""
+                            const cruiserClass = cruiser.includes(`${i}${j}`) ? `bg-secondary`  : ""
+                     
                             return(
                                 <div 
                                     key={j} 
