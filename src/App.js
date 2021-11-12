@@ -35,7 +35,7 @@ class App extends React.Component {
       touchArrayIa: [],
       flopAray: [],
       flopArayIa: [],
-      message: "Positionner votre flotte et cliquer sur Start _",
+      message: "Positionne ta flotte et clique sur Start _",
       turn: "Horizontal",
       fleetPlayer: 4,
       fleetIA: 4,
@@ -429,7 +429,7 @@ class App extends React.Component {
     }
    
     console.log("log de la flotte du player",this.state.fleetPlayer);
-    console.log("log du desctroyer touch",destroyerTouchIa);
+    console.log("log du destroyer touch",destroyerTouchIa);
 
   }
   
